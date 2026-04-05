@@ -14,10 +14,15 @@ function animateRing() {
   requestAnimationFrame(animateRing);
 }
 animateRing();
-document.querySelectorAll('a, button, .card, .project-card, .skill-chip').forEach(el => {
-  el.addEventListener('mouseenter', () => { cursor?.classList.add('hovering'); cursorRing?.classList.add('hovering'); });
-  el.addEventListener('mouseleave', () => { cursor?.classList.remove('hovering'); cursorRing?.classList.remove('hovering'); });
-});
+
+// Hover effects — re-applied after dynamic content loads too
+function bindCursorHover() {
+  document.querySelectorAll('a, button, .card, .project-card, .skill-chip').forEach(el => {
+    el.addEventListener('mouseenter', () => { cursor?.classList.add('hovering'); cursorRing?.classList.add('hovering'); });
+    el.addEventListener('mouseleave', () => { cursor?.classList.remove('hovering'); cursorRing?.classList.remove('hovering'); });
+  });
+}
+bindCursorHover();
 
 // ─── NAV ──────────────────────────────────────────────────────────
 const path = window.location.pathname;
@@ -143,11 +148,16 @@ function showTyping() {
   return div;
 }
 
+chatSend?.addEventListener('click', sendChat);
+chatInput?.addEventListener('keypress', e => { if (e.key === 'Enter') sendChat(); });
+
 async function sendChat() {
   const text = chatInput?.value.trim();
   if (!text) return;
+
   chatInput.value = '';
   appendUserMessage(text);
+
   const typing = showTyping();
   chatHistory.push({ role: 'user', content: text });
 
@@ -157,209 +167,33 @@ async function sendChat() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ message: text, history: chatHistory.slice(-6) })
     });
+
     const data = await res.json();
     typing.remove();
 
-    if (data.reply) appendBotMessage(data.reply);
-
-    // Render visual if present
-    const v = data.visual;
-    if (v && v.type && v.type !== 'none') {
-      renderVisual(v);
+    if (data.reply) {
+      appendBotMessage(data.reply);
     }
 
     chatHistory.push({ role: 'assistant', content: data.reply });
-  } catch {
+
+  } catch (error) {
+    console.error("Chat error:", error);
     typing.remove();
     appendBotMessage("Sorry, I'm having trouble connecting. Try emailing gowthamd997@gmail.com!");
   }
 }
-
-chatSend?.addEventListener('click', sendChat);
-chatInput?.addEventListener('keypress', e => { if (e.key === 'Enter') sendChat(); });
-
-// ─── VISUAL RENDERER ─────────────────────────────────────────────
-const CHART_COLORS = [
-  "#00d4ff", "#a855f7", "#ff4ecd", "#22c55e",
-  "#f59e0b", "#ef4444", "#3b82f6", "#14b8a6",
-  "#fb923c", "#e879f9"
-];
-
-function createVisualWrapper(title) {
-  const wrapper = document.createElement('div');
-  wrapper.style.cssText = `
-    margin-top: 12px;
-    padding: 16px;
-    background: rgba(0,212,255,0.04);
-    border: 1px solid rgba(0,212,255,0.15);
-    border-radius: 14px;
-    backdrop-filter: blur(10px);
-  `;
-  if (title) {
-    const h = document.createElement('div');
-    h.style.cssText = 'font-family:var(--font-mono,monospace);font-size:11px;color:#00d4ff;margin-bottom:12px;letter-spacing:0.08em;text-transform:uppercase;';
-    h.textContent = '▸ ' + title;
-    wrapper.appendChild(h);
-  }
-  return wrapper;
+// Helper function to escape HTML
+function escapeHtml(str) {
+  if (!str) return '';
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
 }
 
-function renderVisual(visual) {
-  const { type, title, x, y, items } = visual;
-
-  if (type === 'cards') {
-    renderCards(title, items);
-  } else if (type === 'pie') {
-    renderChart('pie', title, x, y);
-  } else if (type === 'bar') {
-    renderChart('bar', title, x, y);
-  } else if (type === 'line') {
-    renderChart('line', title, x, y);
-  }
-}
-
-// ── Cards renderer ────────────────────────────────────────────────
-function renderCards(title, items) {
-  if (!items?.length) return;
-  const wrapper = createVisualWrapper(title);
-
-  items.forEach(item => {
-    const card = document.createElement('a');
-    card.href = item.link || '#';
-    if (item.link) card.target = '_blank';
-    card.rel = 'noopener noreferrer';
-    card.style.cssText = `
-      display: block;
-      margin-bottom: 10px;
-      padding: 12px 14px;
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.07);
-      border-left: 3px solid ${item.color || '#00d4ff'};
-      border-radius: 8px;
-      text-decoration: none;
-      transition: background 0.2s;
-      cursor: ${item.link ? 'pointer' : 'default'};
-    `;
-    card.onmouseenter = () => card.style.background = 'rgba(255,255,255,0.06)';
-    card.onmouseleave = () => card.style.background = 'rgba(255,255,255,0.03)';
-
-    card.innerHTML = `
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;">
-        <span style="font-size:13px;font-weight:600;color:#e2e8f0;">${item.title}</span>
-        ${item.tag ? `<span style="font-size:10px;padding:2px 8px;border-radius:20px;background:${item.color || '#00d4ff'}22;color:${item.color || '#00d4ff'};font-family:monospace;">${item.tag}</span>` : ''}
-      </div>
-      ${item.subtitle ? `<div style="font-size:11px;color:#6b7a96;">${item.subtitle}</div>` : ''}
-      ${item.link ? `<div style="font-size:10px;color:#00d4ff;margin-top:4px;opacity:0.7;">GitHub →</div>` : ''}
-    `;
-    wrapper.appendChild(card);
-  });
-
-  chatMessages.appendChild(wrapper);
-  chatMessages.scrollTop = chatMessages.scrollHeight;
-}
-
-// ── Chart renderer (pie / bar / line) ────────────────────────────
-function renderChart(type, title, x, y) {
-  if (!x?.length || !y?.length) return;
-
-  const wrapper = createVisualWrapper(title);
-  const canvas = document.createElement('canvas');
-  canvas.style.maxHeight = '260px';
-  wrapper.appendChild(canvas);
-  chatMessages.appendChild(wrapper);
-
-  const bgColors = x.map((_, i) => CHART_COLORS[i % CHART_COLORS.length]);
-  const isDark = { color: '#94a3b8', gridColor: 'rgba(255,255,255,0.06)' };
-
-  const commonScaleOptions = {
-    ticks: { color: isDark.color, font: { size: 11, family: 'monospace' } },
-    grid: { color: isDark.gridColor }
-  };
-
-  let config;
-
-  if (type === 'pie') {
-    config = {
-      type: 'pie',
-      data: {
-        labels: x,
-        datasets: [{ data: y, backgroundColor: bgColors, borderWidth: 0, hoverOffset: 8 }]
-      },
-      options: {
-        responsive: true,
-        plugins: {
-          legend: {
-            position: 'bottom',
-            labels: { color: isDark.color, padding: 12, font: { size: 11 } }
-          },
-          tooltip: {
-            callbacks: {
-              label: ctx => ` ${ctx.label}: ${ctx.parsed} (${Math.round(ctx.parsed / y.reduce((a,b)=>a+b,0) * 100)}%)`
-            }
-          }
-        }
-      }
-    };
-  } else if (type === 'bar') {
-    config = {
-      type: 'bar',
-      data: {
-        labels: x,
-        datasets: [{
-          data: y,
-          backgroundColor: bgColors,
-          borderRadius: 6,
-          borderSkipped: false,
-          barThickness: 'flex',
-          maxBarThickness: 40
-        }]
-      },
-      options: {
-        responsive: true,
-        plugins: {
-          legend: { display: false },
-          tooltip: { callbacks: { label: ctx => ` ${ctx.parsed.y}` } }
-        },
-        scales: {
-          x: { ...commonScaleOptions, border: { display: false } },
-          y: { ...commonScaleOptions, border: { display: false }, beginAtZero: true, ticks: { ...commonScaleOptions.ticks, stepSize: 1 } }
-        }
-      }
-    };
-  } else if (type === 'line') {
-    config = {
-      type: 'line',
-      data: {
-        labels: x,
-        datasets: [{
-          data: y,
-          borderColor: '#00d4ff',
-          backgroundColor: 'rgba(0,212,255,0.08)',
-          borderWidth: 2,
-          pointBackgroundColor: '#00d4ff',
-          pointRadius: 5,
-          pointHoverRadius: 7,
-          fill: true,
-          tension: 0.4
-        }]
-      },
-      options: {
-        responsive: true,
-        plugins: {
-          legend: { display: false },
-          tooltip: { callbacks: { label: ctx => ` ${ctx.parsed.y} projects` } }
-        },
-        scales: {
-          x: { ...commonScaleOptions, border: { display: false } },
-          y: { ...commonScaleOptions, border: { display: false }, beginAtZero: true, ticks: { ...commonScaleOptions.ticks, stepSize: 1 } }
-        }
-      }
-    };
-  }
-
-  if (config) new Chart(canvas, config);
-  chatMessages.scrollTop = chatMessages.scrollHeight;
-}
 
 // ─── PORTFOLIO UTILS ──────────────────────────────────────────────
 async function loadData(endpoint) {
