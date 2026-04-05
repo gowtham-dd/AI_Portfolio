@@ -7,7 +7,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends gcc && rm -rf /
 
 # Install core deps (skip heavy ML deps unless GROQ/Pinecone env vars are set)
 COPY requirements.txt .
-RUN pip install --no-cache-dir fastapi uvicorn httpx python-dotenv pydantic aiofiles
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Try to install AI deps (graceful fail if resource constrained)
 RUN pip install --no-cache-dir groq pinecone-client || true
