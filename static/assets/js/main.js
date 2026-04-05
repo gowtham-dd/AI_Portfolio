@@ -42,9 +42,16 @@ const menuToggle = document.querySelector('.menu-toggle');
 const navLinks = document.querySelector('.nav-links');
 menuToggle?.addEventListener('click', () => {
   navLinks?.classList.toggle('open');
-  navLinks.style.cssText = navLinks?.classList.contains('open')
-    ? 'display:flex;flex-direction:column;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(5,8,16,0.98);z-index:99;align-items:center;justify-content:center;gap:40px;backdrop-filter:blur(20px)'
-    : '';
+  menuToggle?.classList.toggle('active');
+  navLinks.style.cssText = ''; // Clean up any old inline styles
+});
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', () => {
+    if (window.innerWidth <= 768) {
+      navLinks?.classList.remove('open');
+      menuToggle?.classList.remove('active');
+    }
+  });
 });
 
 // ─── SCROLL ANIMATIONS ────────────────────────────────────────────

@@ -87,17 +87,61 @@ body {
     flex-direction: column;
     position: fixed;
     inset: 0;
-    background: rgba(5, 8, 16, 0.98);
+    background: #050810 !important;
     backdrop-filter: blur(20px);
     align-items: center;
     justify-content: center;
     gap: 32px;
     z-index: 999;
+    animation: fadeIn 0.3s ease forwards;
+  }
+
+  .nav-links.open a {
+    font-size: 24px;
+    font-weight: 700;
+    font-family: var(--font-display);
+    color: #ffffff;
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+    display: block;
+  }
+  .nav-links.open a.active {
+    color: var(--accent);
+  }
+  .nav-links.open li {
+    width: 100%;
+    text-align: center;
   }
 
   .menu-toggle {
-    display: block;
+    display: flex !important;
+    flex-direction: column;
+    gap: 5px;
+    background: transparent;
+    border: none;
     z-index: 1001;
+    cursor: none;
+    padding: 10px;
+  }
+  .menu-toggle span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--text);
+    border-radius: 2px;
+    transition: 0.3s ease;
+  }
+  .menu-toggle.active span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+    background: var(--accent);
+  }
+  .menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+  }
+  .menu-toggle.active span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+    background: var(--accent);
   }
 
   /* HERO FIX */
@@ -167,8 +211,27 @@ body {
 
   /* STATS */
   .stats-row {
-    flex-direction: column;
-    gap: 16px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  /* TERMINAL FIX */
+  .terminal {
+    position: relative !important;
+    width: 260px !important;
+    margin: 30px auto 0 auto !important;
+    font-size: 11px !important;
+    right: auto !important;
+    bottom: auto !important;
+  }
+  .terminal-body {
+    padding: 14px !important;
+    line-height: 1.6 !important;
+    text-align: left;
+  }
+  .terminal-bar {
+    padding: 8px 12px !important;
   }
 
   /* CHATBOT FIX */
@@ -328,6 +391,10 @@ body::before {
   width: 100%;
   z-index: 1000;
   transition: 0.3s ease;
+}
+
+.menu-toggle {
+  display: none;
 }
 
 /* MOBILE FIX */
