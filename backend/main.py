@@ -20,8 +20,6 @@ DATA_FILE = Path("data/portfolio.json")
 
 # ─── Module-level cache ───────────────────────────────────────────
 _portfolio_cache: dict | None = None
-_encoder = None
-_pinecone_index = None
 
 def load_data() -> dict:
     global _portfolio_cache
@@ -34,10 +32,6 @@ def load_data() -> dict:
 
 
 
-
-class ChatRequest(BaseModel):
-    message: str
-    history: Optional[list] = []
 
 # ─── Pages ──────────────────────────────────────────────────────────
 @app.get("/")
