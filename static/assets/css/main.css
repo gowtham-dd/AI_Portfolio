@@ -635,7 +635,7 @@ main { position: relative; z-index: 1; }
 
 /* ─── PROJECT CARDS ───────────────────────────────────────────── */
 .project-grid {
-  display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
   gap: 24px;
 }
 .project-card {
@@ -721,7 +721,7 @@ main { position: relative; z-index: 1; }
 .log-msg { color: var(--text-dim); }
 
 /* ─── SKILLS GRID ─────────────────────────────────────────────── */
-.skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+.skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
 .skill-category {
   padding: 20px;
   background: var(--bg-card);
@@ -745,7 +745,7 @@ main { position: relative; z-index: 1; }
 .skill-chip:hover { border-color: var(--accent); color: var(--accent); }
 
 /* ─── HACKATHON CARDS ─────────────────────────────────────────── */
-.hackathon-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+.hackathon-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
 .hackathon-card {
   padding: 24px;
   display: flex; flex-direction: column; gap: 12px;
