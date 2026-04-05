@@ -1,0 +1,21 @@
+gowtham-portfolio/
+├── app.py                    # Entry point
+├── backend/
+│   └── main.py              # FastAPI app, all API routes, chatbot logic
+├── frontend/
+│   ├── pages/
+│   │   ├── index.html       # Homepage
+│   │   ├── projects.html    # Projects + GitHub repos
+│   │   ├── about.html       # About, timeline, experience
+│   │   └── contact.html     # Contact form + social links
+│   ├── components/
+│   │   └── nav.html         # Shared nav reference
+│   └── assets/
+│       ├── css/main.css     # All styles (design system)
+│       └── js/main.js       # Shared JS: cursor, chatbot, data rendering
+├── data/
+│   └── portfolio.json       # ← SINGLE SOURCE OF TRUTH for all content
+├── ingest_pinecone.py       # Run once: populate Pinecone with portfolio data
+├── requirements.txt
+├── Dockerfile
+└── .env.example

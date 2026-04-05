@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About — Gowtham D</title>
+  <link rel="stylesheet" href="/static/assets/css/main.css"/>
+</head>
+<body>
+  <nav class="nav">
+    <a href="/" class="nav-logo"><span class="dot"></span>GD.</a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/projects">Projects</a></li>
+      <li><a href="/about" class="active">About</a></li>
+      <li><a href="/contact">Contact</a></li>
+      <li><a href="https://drive.google.com/file/d/14a4Vy_ekC_PAztCCuHnc6D1PmDromDNf/view" target="_blank" class="nav-cta">Resume ↗</a></li>
+    </ul>
+    <button class="menu-toggle"><span></span><span></span><span></span></button>
+  </nav>
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursor-ring"></div>
+  <div class="grid-bg"></div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+
+  <main>
+    <section class="section" style="padding-top:140px;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;">
+        <!-- Left: Story -->
+        <div>
+          <div class="section-label">About Me</div>
+          <h1 class="section-title">Building AI that<br><span style="color:var(--accent)">actually works.</span></h1>
+          <div style="display:flex;flex-direction:column;gap:20px;color:var(--text-dim);font-size:15px;line-height:1.9;">
+            <p>
+              I'm <strong style="color:var(--text)">Gowtham D</strong>, an AI Engineer passionate about turning complex AI research into production-grade systems that solve real problems. I believe in learning by building — every project I ship teaches me more than any course.
+            </p>
+            <p>
+              My journey started with Data Science at IIT Madras via GUVI, and evolved quickly into Agentic AI, MLOps, and multi-agent system design. I co-founded <strong style="color:var(--accent)">Literate Spork</strong>, a GitHub community that mentors 50+ students through real-world AI projects.
+            </p>
+            <p>
+              As AIML Head at <strong style="color:var(--accent-2)">GDGoC SKASC</strong>, I ran sessions on LLMs, computer vision, and MLOps pipelines — always focused on building, not just learning theory.
+            </p>
+            <p>
+              My current obsession is <strong style="color:var(--accent)">Agentic AI</strong> — building LangGraph-orchestrated multi-agent systems that can perceive, decide, and act. FHIRFlow is the best example: 5 agents, real FHIR data, live EDI claim submission, and actual AI voice calls to patients.
+            </p>
+          </div>
+
+          <div style="margin-top:36px;display:flex;gap:12px;flex-wrap:wrap;">
+            <a href="mailto:gowthamd997@gmail.com" class="btn btn-primary">Say Hello →</a>
+            <a href="https://www.linkedin.com/in/gowtham-duraipandi" target="_blank" class="btn btn-outline">LinkedIn</a>
+            <a href="https://github.com/gowtham-dd" target="_blank" class="btn btn-outline">GitHub</a>
+          </div>
+        </div>
+
+        <!-- Right: Info -->
+        <div style="display:flex;flex-direction:column;gap:24px;">
+          <!-- Avatar -->
+          <div class="card" style="padding:28px;display:flex;align-items:center;gap:20px;">
+            <img src="https://avatars.githubusercontent.com/u/158311426?v=4" alt="Gowtham D" 
+                 style="width:80px;height:80px;border-radius:50%;border:2px solid rgba(0,212,255,0.3);"/>
+            <div>
+              <h3 style="font-family:var(--font-display);font-size:20px;margin-bottom:4px;">Gowtham D</h3>
+              <p style="font-family:var(--font-mono);font-size:13px;color:var(--text-dim);">AI Engineer · India</p>
+              <div class="status-badge" style="margin-top:10px;display:inline-flex;">
+                <span class="status-dot"></span>Available for Work
+              </div>
+            </div>
+          </div>
+
+          <!-- Journey Timeline -->
+          <div class="card" style="padding:28px;">
+            <h4 style="font-family:var(--font-mono);font-size:13px;color:var(--accent);letter-spacing:0.1em;margin-bottom:20px;">JOURNEY</h4>
+            <div id="timeline" style="display:flex;flex-direction:column;gap:0;">
+              <!-- Loaded by JS -->
+            </div>
+          </div>
+
+          <!-- Skills -->
+          <div class="card" style="padding:28px;">
+            <h4 style="font-family:var(--font-mono);font-size:13px;color:var(--accent);letter-spacing:0.1em;margin-bottom:16px;">CURRENT STACK</h4>
+            <div style="display:flex;flex-wrap:wrap;gap:8px;" id="about-skills">
+              <!-- Loaded by JS -->
+            </div>
+          </div>
+
+          <!-- Fun facts -->
+          <div class="card" style="padding:28px;border-color:rgba(168,85,247,0.2);">
+            <h4 style="font-family:var(--font-mono);font-size:13px;color:var(--accent-2);letter-spacing:0.1em;margin-bottom:16px;">FUN FACTS</h4>
+            <div style="display:flex;flex-direction:column;gap:10px;font-size:13px;color:var(--text-dim);line-height:1.7;">
+              <p>🧠 Love experimenting with AI models and making them practical</p>
+              <p>⚡ Automating workflows with n8n + AI agents is my new obsession</p>
+              <p>🎨 Enjoy building dashboards & storytelling with data</p>
+              <p>🚀 Believe AI should <em>ship</em>, not just demo in a notebook</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience -->
+    <section class="section" style="padding-top:0;">
+      <div class="section-label">Experience</div>
+      <h2 class="section-title" style="margin-bottom:40px;">Roles & Leadership</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:20px;" id="experience-grid">
+        <!-- Loaded by JS -->
+      </div>
+    </section>
+
+    <!-- Hackathons -->
+    <section class="section" style="padding-top:0;">
+      <div class="section-label">Achievements</div>
+      <h2 class="section-title" style="margin-bottom:32px;">Hackathons</h2>
+      <div class="hackathon-grid" id="hackathons-grid">
+        <!-- Loaded by JS -->
+      </div>
+    </section>
+
+    <!-- GitHub Stats Banner -->
+    <section class="section" style="padding-top:0;">
+      <div class="section-label">Open Source</div>
+      <h2 class="section-title" style="margin-bottom:32px;">GitHub Presence</h2>
+      <div class="card" style="padding:32px;text-align:center;">
+        <img src="https://github-readme-stats.vercel.app/api?username=gowtham-dd&show_icons=true&theme=radical&hide_border=true&bg_color=0c1222&title_color=00d4ff&text_color=6b7a96&icon_color=00d4ff&border_radius=8&include_all_commits=true"
+             alt="GitHub Stats" style="max-width:500px;width:100%;border-radius:8px;" onerror="this.style.display='none'"/>
+        <img src="https://github-readme-streak-stats.herokuapp.com?user=gowtham-dd&theme=radical&hide_border=true&background=0c1222&ring=00d4ff&fire=ff6b35&currStreakLabel=00d4ff&border_radius=8"
+             alt="GitHub Streak" style="max-width:500px;width:100%;border-radius:8px;margin-top:16px;" onerror="this.style.display='none'"/>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="copy">© 2026 Gowtham D</div>
+    <div class="footer-links">
+      <a href="https://github.com/gowtham-dd" target="_blank">GitHub</a>
+      <a href="https://www.linkedin.com/in/gowtham-duraipandi" target="_blank">LinkedIn</a>
+      <a href="mailto:gowthamd997@gmail.com">Email</a>
+    </div>
+  </footer>
+
+  <!-- Chatbot -->
+  <button class="chatbot-btn" id="chat-btn">
+    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+    </svg>
+  </button>
+  <div class="chatbot-panel" id="chat-panel">
+    <div class="chatbot-header">
+      <div class="avatar">🤖</div>
+      <div class="info"><h4>Gowtham's AI</h4><p>● Online</p></div>
+      <button class="chatbot-close" id="chat-close">✕</button>
+    </div>
+    <div class="chatbot-messages" id="chat-messages"></div>
+    <div class="chatbot-input">
+      <input type="text" id="chat-input" placeholder="Ask me anything..."/>
+      <button id="chat-send">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <script src="/static/assets/js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      portfolioUtils.renderHackathons('hackathons-grid');
+
+      // Skills
+      const data = await portfolioUtils.loadData('/api/portfolio');
+      if (data?.skills) {
+        const allSkills = [...data.skills.ai_ml, ...data.skills.mlops].slice(0, 20);
+        document.getElementById('about-skills').innerHTML = allSkills.map(s =>
+          `<span class="skill-chip">${s}</span>`
+        ).join('');
+      }
+
+      // Experience
+      const exp = await portfolioUtils.loadData('/api/experience');
+      if (exp) {
+        document.getElementById('experience-grid').innerHTML = exp.map(e => `
+          <div class="card animate-on-scroll" style="padding:28px;">
+            <div style="font-size:28px;margin-bottom:12px;">${e.icon}</div>
+            <div style="font-family:var(--font-mono);font-size:11px;color:var(--accent);letter-spacing:0.1em;margin-bottom:8px;">${e.type.toUpperCase()}</div>
+            <h3 style="font-family:var(--font-display);font-size:18px;font-weight:700;margin-bottom:4px;">${e.role}</h3>
+            <div style="font-family:var(--font-mono);font-size:13px;color:var(--text-dim);margin-bottom:4px;">${e.org}</div>
+            <div style="font-family:var(--font-mono);font-size:11px;color:var(--text-muted);margin-bottom:14px;">${e.period}</div>
+            <p style="font-size:13px;color:var(--text-dim);line-height:1.7;">${e.description}</p>
+          </div>
+        `).join('');
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+          el.style.opacity = '0'; el.style.transform = 'translateY(30px)';
+          el.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
+          const obs = new IntersectionObserver(entries => { entries.forEach(e => { if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='none';obs.unobserve(e.target);}});},{threshold:0.1});
+          obs.observe(el);
+        });
+      }
+
+      // Timeline
+      const timeline = [
+        { year: '2026', label: 'FHIRFlow', note: 'Agentic AI · LangGraph' },
+        { year: '2025', label: 'GDGoC AIML Head', note: 'Leadership & Mentorship' },
+        { year: '2025', label: 'Multiple CV & NLP Projects', note: 'YOLOv11, HDBSCAN, MLOps' },
+        { year: '2024', label: 'Literate Spork Founded', note: 'Open Source Community' },
+        { year: '2024', label: 'Tech Hack 1st Prize', note: 'SocioMedico App' },
+        { year: '2024', label: 'IIT Madras Data Science', note: 'Certification' },
+      ];
+      document.getElementById('timeline').innerHTML = timeline.map((t, i) => `
+        <div style="display:flex;gap:16px;padding-bottom:16px;${i < timeline.length-1 ? 'border-bottom:1px solid var(--border);margin-bottom:16px;' : ''}">
+          <div style="font-family:var(--font-mono);font-size:12px;color:var(--accent);min-width:36px;padding-top:2px;">${t.year}</div>
+          <div>
+            <div style="font-size:14px;font-weight:500;margin-bottom:2px;">${t.label}</div>
+            <div style="font-size:12px;color:var(--text-dim);">${t.note}</div>
+          </div>
+        </div>
+      `).join('');
+    });
+  </script>
+</body>
+</html>
