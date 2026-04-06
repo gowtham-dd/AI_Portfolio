@@ -3,6 +3,10 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <script>
+    const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+    if (savedTheme === 'light') document.documentElement.setAttribute('data-theme', 'light');
+  </script>
   <title>About — Gowtham D</title>
   <link rel="stylesheet" href="/static/assets/css/main.css"/>
 </head>
@@ -16,7 +20,13 @@
       <li><a href="/contact">Contact</a></li>
       <li><a href="https://drive.google.com/file/d/1mNPtZ1HQ7Gg-YlCw8Rz0w6Kk43rdhDJb/view?usp=sharing" target="_blank" class="nav-cta">Resume ↗</a></li>
     </ul>
-    <button class="menu-toggle"><span></span><span></span><span></span></button>
+    <div class="nav-controls" style="display: flex; align-items: center; gap: 16px;">
+      <button class="theme-toggle" aria-label="Toggle dark/light mode" style="background: transparent; border: none; color: var(--text); cursor: pointer; display: flex; align-items: center;">
+        <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+      </button>
+      <button class="menu-toggle"><span></span><span></span><span></span></button>
+    </div>
   </nav>
   <div class="cursor" id="cursor"></div>
   <div class="cursor-ring" id="cursor-ring"></div>
@@ -121,9 +131,9 @@
       <div class="section-label">Open Source</div>
       <h2 class="section-title" style="margin-bottom:32px;">GitHub Presence</h2>
       <div class="card" style="padding:32px;text-align:center;">
-        <img src="https://github-readme-stats.vercel.app/api?username=gowtham-dd&show_icons=true&theme=radical&hide_border=true&bg_color=0c1222&title_color=00d4ff&text_color=6b7a96&icon_color=00d4ff&border_radius=8&include_all_commits=true"
+        <img class="github-stats-img" src="https://github-readme-stats.vercel.app/api?username=gowtham-dd&show_icons=true&theme=radical&hide_border=true&bg_color=0c1222&title_color=00d4ff&text_color=6b7a96&icon_color=00d4ff&border_radius=8&include_all_commits=true"
              alt="GitHub Stats" style="max-width:500px;width:100%;border-radius:8px;" onerror="this.style.display='none'"/>
-        <img src="https://github-readme-streak-stats.herokuapp.com?user=gowtham-dd&theme=radical&hide_border=true&background=0c1222&ring=00d4ff&fire=ff6b35&currStreakLabel=00d4ff&border_radius=8"
+        <img class="github-stats-img" src="https://github-readme-streak-stats.herokuapp.com?user=gowtham-dd&theme=radical&hide_border=true&background=0c1222&ring=00d4ff&fire=ff6b35&currStreakLabel=00d4ff&border_radius=8"
              alt="GitHub Streak" style="max-width:500px;width:100%;border-radius:8px;margin-top:16px;" onerror="this.style.display='none'"/>
       </div>
     </section>

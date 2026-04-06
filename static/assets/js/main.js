@@ -34,10 +34,88 @@ document.querySelectorAll('.nav-links a').forEach(link => {
 });
 const nav = document.querySelector('.nav');
 window.addEventListener('scroll', () => {
-  nav?.style.setProperty('background', window.scrollY > 50
-    ? 'rgba(5,8,16,0.98)'
-    : 'linear-gradient(to bottom, rgba(5,8,16,0.95), transparent)');
+  if(window.scrollY > 50) {
+    nav?.classList.add('scrolled');
+  } else {
+    nav?.classList.remove('scrolled');
+  }
 });
+
+// ─── THEME TOGGLE ─────────────────────────────────────────────────
+const themeToggles = document.querySelectorAll('.theme-toggle');
+themeToggles.forEach(toggle => {
+  toggle.addEventListener('click', () => {
+    const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    updateThemeIcons(newTheme);
+    updateGithubStatsTheme(newTheme);
+  });
+});
+
+function updateGithubStatsTheme(theme) {
+  const isLight = theme === 'light';
+  document.querySelectorAll('.github-stats-img').forEach(img => {
+    try {
+      let url = new URL(img.src);
+      if (isLight) {
+        if(url.searchParams.has('bg_color')) url.searchParams.set('bg_color', 'ffffff');
+        if(url.searchParams.has('title_color')) url.searchParams.set('title_color', '2563eb');
+        if(url.searchParams.has('text_color')) url.searchParams.set('text_color', '475569');
+        if(url.searchParams.has('icon_color')) url.searchParams.set('icon_color', '2563eb');
+        if(url.searchParams.has('background')) url.searchParams.set('background', 'ffffff');
+        if(url.searchParams.has('ring')) url.searchParams.set('ring', '2563eb');
+        if(url.searchParams.has('fire')) url.searchParams.set('fire', 'ea580c');
+        if(url.searchParams.has('currStreakLabel')) url.searchParams.set('currStreakLabel', '2563eb');
+        
+        if(url.hostname.includes('streak-stats')) {
+          url.searchParams.set('dates', '475569');
+          url.searchParams.set('sideLabels', '475569');
+          url.searchParams.set('sideNums', '0f172a');
+          url.searchParams.set('currStreakNum', '0f172a');
+        }
+      } else {
+        if(url.searchParams.has('bg_color')) url.searchParams.set('bg_color', '18181b');
+        if(url.searchParams.has('title_color')) url.searchParams.set('title_color', '00d4ff');
+        if(url.searchParams.has('text_color')) url.searchParams.set('text_color', '94a3b8');
+        if(url.searchParams.has('icon_color')) url.searchParams.set('icon_color', '00d4ff');
+        if(url.searchParams.has('background')) url.searchParams.set('background', '18181b');
+        if(url.searchParams.has('ring')) url.searchParams.set('ring', '00d4ff');
+        if(url.searchParams.has('fire')) url.searchParams.set('fire', 'ff6b35');
+        if(url.searchParams.has('currStreakLabel')) url.searchParams.set('currStreakLabel', '00d4ff');
+        
+        if(url.hostname.includes('streak-stats')) {
+          url.searchParams.set('dates', '94a3b8');
+          url.searchParams.set('sideLabels', '94a3b8');
+          url.searchParams.set('sideNums', 'f8fafc');
+          url.searchParams.set('currStreakNum', 'f8fafc');
+        }
+      }
+      img.src = url.toString();
+    } catch(e) {}
+  });
+}
+
+function updateThemeIcons(theme) {
+  document.querySelectorAll('.theme-toggle').forEach(btn => {
+    const sunIcon = btn.querySelector('.sun-icon');
+    const moonIcon = btn.querySelector('.moon-icon');
+    if (theme === 'light') {
+      if(sunIcon) sunIcon.style.display = 'block';
+      if(moonIcon) moonIcon.style.display = 'none';
+      btn.style.color = 'var(--text)';
+    } else {
+      if(sunIcon) sunIcon.style.display = 'none';
+      if(moonIcon) moonIcon.style.display = 'block';
+      btn.style.color = 'var(--text)';
+    }
+  });
+}
+// Init icons
+const initialTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+updateThemeIcons(initialTheme);
+updateGithubStatsTheme(initialTheme);
 const menuToggle = document.querySelector('.menu-toggle');
 const navLinks = document.querySelector('.nav-links');
 menuToggle?.addEventListener('click', () => {
