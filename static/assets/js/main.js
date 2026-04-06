@@ -154,7 +154,7 @@ function renderProjectCard(p) {
       <div class="category-tag" style="color:${p.color}">${p.category}</div>
       <h3>${p.title}</h3>
       <div class="subtitle">${p.subtitle}</div>
-      <div class="description">${p.description.slice(0, 160)}${p.description.length > 160 ? '...' : ''}</div>
+      <div class="description">${p.description}</div>
       <div class="tags">${p.tags.slice(0, 5).map(t => `<span class="tag ${colorClass}">${t}</span>`).join('')}</div>
       <div class="impact">💡 ${p.impact}</div>
       <div class="card-footer">

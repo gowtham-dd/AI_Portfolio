@@ -642,7 +642,9 @@ main { position: relative; z-index: 1; }
   padding: 28px;
   cursor: pointer;
   text-decoration: none; color: inherit;
-  display: block;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 .project-card .category-tag {
   font-family: var(--font-mono); font-size: 11px;
@@ -663,8 +665,14 @@ main { position: relative; z-index: 1; }
 .project-card .description {
   font-size: 14px; color: var(--text-dim);
   line-height: 1.7; margin-bottom: 20px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
-.project-card .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; }
+.project-card .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; margin-bottom: 20px; }
 .project-card .impact {
   padding: 12px 16px;
   background: rgba(0,212,255,0.04);
@@ -867,13 +875,70 @@ footer .footer-links a:hover { color: var(--accent); }
 
 /* ─── MOBILE NAV ──────────────────────────────────────────────── */
 @media (max-width: 900px) {
+  body { overflow-x: hidden; width: 100%; }
   .nav { padding: 16px 24px; }
   .nav-links { display: none; }
-  .section { padding: 60px 24px; }
-  .hero { padding: 100px 24px 60px; flex-direction: column; }
-  .hero-visual { order: -1; }
+  .section { padding: 60px 24px; overflow-x: hidden; box-sizing: border-box; }
+  
+  /* Hero Responsiveness */
+  .hero { 
+    padding: 120px 20px 60px; 
+    flex-direction: column; 
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+    overflow-x: hidden;
+  }
+  .hero-content { 
+    width: 100%; 
+    max-width: 100%; 
+    box-sizing: border-box;
+    margin: 0;
+  }
+  .hero-visual { 
+    order: -1; 
+    width: 100%; 
+    max-width: 100%; 
+    margin-bottom: 40px; 
+    padding: 0; 
+    box-sizing: border-box; 
+  }
+  .hero-name {
+    font-size: clamp(36px, 10vw, 48px);
+    letter-spacing: -1px;
+    width: 100%;
+    word-wrap: break-word;
+  }
+  .hero-desc {
+    font-size: 15px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 10px;
+    box-sizing: border-box;
+  }
+  .hero-actions {
+    justify-content: center;
+    width: 100%;
+  }
+  
+  /* Terminal Fix */
+  .terminal {
+    position: relative !important;
+    right: auto !important;
+    bottom: auto !important;
+    width: 100% !important;
+    max-width: 300px !important;
+    margin: 20px auto 0 auto !important;
+  }
+  
   .project-grid { grid-template-columns: 1fr; }
-  .stats-row { gap: 24px; }
+  .stats-row { 
+    gap: 16px; 
+    width: 100%; 
+    padding: 0 10px; 
+    box-sizing: border-box; 
+  }
   footer { flex-direction: column; padding: 30px 24px; }
-  .chatbot-panel { width: calc(100vw - 40px); right: 20px; }
+  .chatbot-panel { width: calc(100% - 40px); right: 20px; }
 }
