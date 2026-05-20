@@ -114,17 +114,17 @@
               <!-- Loaded by JS -->
             </div>
           </div>
-
-          <!-- Skills -->
-          <div class="card" style="padding:28px;">
-            <h4
-              style="font-family:var(--font-mono);font-size:13px;color:var(--accent);letter-spacing:0.1em;margin-bottom:16px;">
-              CURRENT STACK</h4>
-            <div style="display:flex;flex-wrap:wrap;gap:8px;" id="about-skills">
-              <!-- Loaded by JS -->
-            </div>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- Premium Tech Stack -->
+    <section class="section" style="padding-top:0;">
+      <div class="section-label">Capabilities</div>
+      <h2 class="section-title" style="margin-bottom:40px;">Technical Arsenal</h2>
+      <div id="premium-skills-grid" style="display:flex;flex-direction:column;gap:60px;width:100%;">
+        <!-- Loaded by JS -->
       </div>
     </section>
 
@@ -182,13 +182,7 @@
       portfolioUtils.renderHackathons('hackathons-grid');
 
       // Skills
-      const data = await portfolioUtils.loadData('/api/portfolio');
-      if (data?.skills) {
-        const allSkills = [...data.skills.ai_ml, ...data.skills.mlops].slice(0, 20);
-        document.getElementById('about-skills').innerHTML = allSkills.map(s =>
-          `<span class="skill-chip">${s}</span>`
-        ).join('');
-      }
+      portfolioUtils.renderSkills('premium-skills-grid');
 
       // Experience
       const exp = await portfolioUtils.loadData('/api/experience');

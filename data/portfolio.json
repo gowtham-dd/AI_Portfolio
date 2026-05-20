@@ -34,9 +34,10 @@
     "ai_ml": [
       "LangGraph",
       "LangChain",
+      "LangSmith",
+      "LangServe",
       "LLaMA 3",
       "Groq",
-      "Pinecone",
       "HuggingFace",
       "TensorFlow",
       "PyTorch",
@@ -65,7 +66,14 @@
       "PostgreSQL",
       "SQLite",
       "Pinecone",
+      "FAISS",
+      "Qdrant",
+      "AWS S3",
       "FHIR R4"
+    ],
+    "cloud": [
+      "AWS",
+      "Azure"
     ]
   },
   "projects": [

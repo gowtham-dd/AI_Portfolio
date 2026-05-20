@@ -163,14 +163,6 @@
       </div>
     </section>
 
-    <!-- ─── SKILLS SNAPSHOT ───────────────────────────────────── -->
-    <section class="section" style="padding-top:0;">
-      <div class="section-label">Skills</div>
-      <h2 class="section-title" style="margin-bottom:32px;">Tech Stack</h2>
-      <div class="skills-grid" id="skills-grid">
-        <div style="color:var(--text-dim);font-family:var(--font-mono);font-size:13px;">Loading...</div>
-      </div>
-    </section>
 
     <!-- ─── HACKATHONS ────────────────────────────────────────── -->
     <section class="section" style="padding-top:0;">
@@ -217,7 +209,6 @@
     // Initialize homepage
     document.addEventListener('DOMContentLoaded', () => {
       portfolioUtils.renderProjects('featured-projects', true);
-      portfolioUtils.renderSkills('skills-grid');
       portfolioUtils.renderHackathons('hackathons-grid');
 
       // GitHub live stats

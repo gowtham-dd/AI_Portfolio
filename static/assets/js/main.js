@@ -34,7 +34,7 @@ document.querySelectorAll('.nav-links a').forEach(link => {
 });
 const nav = document.querySelector('.nav');
 window.addEventListener('scroll', () => {
-  if(window.scrollY > 50) {
+  if (window.scrollY > 50) {
     nav?.classList.add('scrolled');
   } else {
     nav?.classList.remove('scrolled');
@@ -60,32 +60,32 @@ function updateGithubStatsTheme(theme) {
     try {
       let url = new URL(img.src);
       if (isLight) {
-        if(url.searchParams.has('bg_color')) url.searchParams.set('bg_color', 'ffffff');
-        if(url.searchParams.has('title_color')) url.searchParams.set('title_color', '2563eb');
-        if(url.searchParams.has('text_color')) url.searchParams.set('text_color', '475569');
-        if(url.searchParams.has('icon_color')) url.searchParams.set('icon_color', '2563eb');
-        if(url.searchParams.has('background')) url.searchParams.set('background', 'ffffff');
-        if(url.searchParams.has('ring')) url.searchParams.set('ring', '2563eb');
-        if(url.searchParams.has('fire')) url.searchParams.set('fire', 'ea580c');
-        if(url.searchParams.has('currStreakLabel')) url.searchParams.set('currStreakLabel', '2563eb');
-        
-        if(url.hostname.includes('streak-stats')) {
+        if (url.searchParams.has('bg_color')) url.searchParams.set('bg_color', 'ffffff');
+        if (url.searchParams.has('title_color')) url.searchParams.set('title_color', '2563eb');
+        if (url.searchParams.has('text_color')) url.searchParams.set('text_color', '475569');
+        if (url.searchParams.has('icon_color')) url.searchParams.set('icon_color', '2563eb');
+        if (url.searchParams.has('background')) url.searchParams.set('background', 'ffffff');
+        if (url.searchParams.has('ring')) url.searchParams.set('ring', '2563eb');
+        if (url.searchParams.has('fire')) url.searchParams.set('fire', 'ea580c');
+        if (url.searchParams.has('currStreakLabel')) url.searchParams.set('currStreakLabel', '2563eb');
+
+        if (url.hostname.includes('streak-stats')) {
           url.searchParams.set('dates', '475569');
           url.searchParams.set('sideLabels', '475569');
           url.searchParams.set('sideNums', '0f172a');
           url.searchParams.set('currStreakNum', '0f172a');
         }
       } else {
-        if(url.searchParams.has('bg_color')) url.searchParams.set('bg_color', '18181b');
-        if(url.searchParams.has('title_color')) url.searchParams.set('title_color', '00d4ff');
-        if(url.searchParams.has('text_color')) url.searchParams.set('text_color', '94a3b8');
-        if(url.searchParams.has('icon_color')) url.searchParams.set('icon_color', '00d4ff');
-        if(url.searchParams.has('background')) url.searchParams.set('background', '18181b');
-        if(url.searchParams.has('ring')) url.searchParams.set('ring', '00d4ff');
-        if(url.searchParams.has('fire')) url.searchParams.set('fire', 'ff6b35');
-        if(url.searchParams.has('currStreakLabel')) url.searchParams.set('currStreakLabel', '00d4ff');
-        
-        if(url.hostname.includes('streak-stats')) {
+        if (url.searchParams.has('bg_color')) url.searchParams.set('bg_color', '18181b');
+        if (url.searchParams.has('title_color')) url.searchParams.set('title_color', '00d4ff');
+        if (url.searchParams.has('text_color')) url.searchParams.set('text_color', '94a3b8');
+        if (url.searchParams.has('icon_color')) url.searchParams.set('icon_color', '00d4ff');
+        if (url.searchParams.has('background')) url.searchParams.set('background', '18181b');
+        if (url.searchParams.has('ring')) url.searchParams.set('ring', '00d4ff');
+        if (url.searchParams.has('fire')) url.searchParams.set('fire', 'ff6b35');
+        if (url.searchParams.has('currStreakLabel')) url.searchParams.set('currStreakLabel', '00d4ff');
+
+        if (url.hostname.includes('streak-stats')) {
           url.searchParams.set('dates', '94a3b8');
           url.searchParams.set('sideLabels', '94a3b8');
           url.searchParams.set('sideNums', 'f8fafc');
@@ -93,7 +93,7 @@ function updateGithubStatsTheme(theme) {
         }
       }
       img.src = url.toString();
-    } catch(e) {}
+    } catch (e) { }
   });
 }
 
@@ -102,12 +102,12 @@ function updateThemeIcons(theme) {
     const sunIcon = btn.querySelector('.sun-icon');
     const moonIcon = btn.querySelector('.moon-icon');
     if (theme === 'light') {
-      if(sunIcon) sunIcon.style.display = 'block';
-      if(moonIcon) moonIcon.style.display = 'none';
+      if (sunIcon) sunIcon.style.display = 'block';
+      if (moonIcon) moonIcon.style.display = 'none';
       btn.style.color = 'var(--text)';
     } else {
-      if(sunIcon) sunIcon.style.display = 'none';
-      if(moonIcon) moonIcon.style.display = 'block';
+      if (sunIcon) sunIcon.style.display = 'none';
+      if (moonIcon) moonIcon.style.display = 'block';
       btn.style.color = 'var(--text)';
     }
   });
@@ -228,7 +228,7 @@ function renderProjectCard(p) {
   const tagColors = { 'Agentic AI': '', 'NLP + Security': 'tag-orange', 'Generative AI': 'tag-purple', 'Computer Vision': 'tag-green', 'Community': 'tag-green' };
   const colorClass = tagColors[p.category] || '';
   const hasImage = p.image ? true : false;
-  
+
   return `
     <div class="card project-card animate-on-scroll" onclick="window.portfolioUtils.openProjectModal('${p.id}')">
       ${hasImage ? `
@@ -310,21 +310,106 @@ async function renderSkills(containerId) {
   const data = await loadData('/api/portfolio');
   if (!data?.skills) return;
   const { skills } = data;
+
+  const skillDetails = {
+    'Python': { icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg', sub: 'General Purpose' },
+    'SQL': { icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/azuresqldatabase/azuresqldatabase-original.svg', sub: 'Data Query' },
+    'JavaScript': { icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg', sub: 'Interactivity' },
+    'HTML/CSS': { icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg', sub: 'Web Structure' },
+    'LangGraph': { icon: 'https://avatars.githubusercontent.com/u/126733545?s=200&v=4', sub: 'Agentic Workflows' },
+    'LangChain': { icon: 'https://avatars.githubusercontent.com/u/126733545?s=200&v=4', sub: 'LLM Orchestration' },
+    'LangSmith': { icon: 'https://avatars.githubusercontent.com/u/126733545?s=200&v=4', sub: 'LLM Observability' },
+    'LangServe': { icon: 'https://avatars.githubusercontent.com/u/126733545?s=200&v=4', sub: 'Deployment' },
+    'LLaMA 3': { icon: 'https://cdn.simpleicons.org/meta/0668E1', sub: 'Open Weights LLM' },
+    'Groq': { icon: '/static/assets/images/groq.webp', sub: 'Inference Engine' },
+    'HuggingFace': { icon: 'https://cdn.simpleicons.org/huggingface', sub: 'Model Hub' },
+    'TensorFlow': { icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tensorflow/tensorflow-original.svg', sub: 'Deep Learning' },
+    'PyTorch': { icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pytorch/pytorch-original.svg', sub: 'Deep Learning' },
+    'Scikit-learn': { icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/scikitlearn/scikitlearn-original.svg', sub: 'Machine Learning' },
+    'OpenCV': { icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/opencv/opencv-original.svg', sub: 'Computer Vision' },
+    'YOLOv11': { icon: 'https://raw.githubusercontent.com/ultralytics/assets/main/logo/Ultralytics_Logotype_Reverse.svg', sub: 'Object Detection' },
+    'Deepgram': { icon: '/static/assets/images/deepgram.webp', sub: 'Speech to Text' },
+    'MLflow': { icon: 'https://cdn.simpleicons.org/mlflow/0194E2', sub: 'Experiment Tracking' },
+    'DagsHub': { icon: 'https://logo.clearbit.com/dagshub.com', sub: 'Data Version Control' },
+    'Docker': { icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg', sub: 'Containerization' },
+    'GitHub Actions': { icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/githubactions/githubactions-original.svg', sub: 'CI/CD' },
+    'n8n': { icon: 'https://cdn.simpleicons.org/n8n/EA4B71', sub: 'Workflow Automation' },
+    'FastAPI': { icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/fastapi/fastapi-original.svg', sub: 'Web Framework' },
+    'Flask': { icon: 'https://cdn.simpleicons.org/flask/white', sub: 'Microframework' },
+    'Pandas': { icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pandas/pandas-original.svg', sub: 'Data Manipulation' },
+    'NumPy': { icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/numpy/numpy-original.svg', sub: 'Numerical Computing' },
+    'Matplotlib': { icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/matplotlib/matplotlib-original.svg', sub: 'Data Visualization' },
+    'Seaborn': { icon: 'https://seaborn.pydata.org/_static/logo-mark-lightbg.svg', sub: 'Statistical Viz' },
+    'Plotly': { icon: 'https://cdn.simpleicons.org/plotly/3F4F75', sub: 'Interactive Viz' },
+    'PostgreSQL': { icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg', sub: 'Relational DB' },
+    'SQLite': { icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/sqlite/sqlite-original.svg', sub: 'Embedded DB' },
+    'Pinecone': { icon: `<svg enable-background="new 0 0 1077 220" class="w-full" viewBox="0 0 1077 220" xmlns="http://www.w3.org/2000/svg" style="width:36px; height:auto;"><g fill="var(--text)"><path d="m246.4 51.4h55.2c39.9 0 50.1 23.5 50.1 42.6s-10.3 42.6-50.1 42.6h-34.1v67.2h-21.1zm21.2 67.2h27.9c16.8 0 33.5-3.8 33.5-24.5s-16.8-24.5-33.5-24.5h-27.9z"/><path d="m379.4 50.7c8 0 14.5 6.3 14.6 14 .1 7.8-6.2 14.2-14.2 14.4s-14.6-5.9-14.9-13.7c-.1-3.9 1.4-7.6 4.1-10.4 2.6-2.7 6.4-4.3 10.4-4.3zm-9.8 51.1h19.6v102.1h-19.6z"/><path d="m412 101.8h19.9v15.8h.5c6.9-12 20.3-19.2 34.4-18.3 20.3 0 37.8 11.9 37.8 39v65.7h-19.6v-60.2c0-19.2-11.3-26.3-23.9-26.3-16.5 0-29.1 10.3-29.1 34v52.5h-20z"/><path d="m540.9 160c0 17.8 17 29.5 35.3 29.5 11.5-.3 22.2-6 28.7-15.2l15.1 11.2c-11 14.1-28.4 22-46.5 21.1-33.2 0-53.8-23.2-53.8-53.6-.6-14.2 4.9-28 15.1-38.1s24.2-15.7 38.8-15.5c36.9 0 51 27.5 51 53.8v6.9h-83.7zm62.8-15.5c-.5-17-10.2-29.5-30.2-29.5-17.1-.1-31.4 12.8-32.5 29.5z"/><path d="m714.6 129c-6.5-7.5-16-11.7-26.1-11.4-21.6 0-32.7 17-32.7 36.2-.5 9.1 2.8 17.9 9.2 24.5s15.3 10.3 24.6 10.2c9.8.3 19.2-3.9 25.4-11.4l14.1 13.6c-10.3 10.6-24.8 16.3-39.7 15.7-14.7.7-29-4.6-39.4-14.8-10.4-10.1-16-24.1-15.3-38.4-.7-14.4 4.9-28.4 15.3-38.6s24.7-15.7 39.5-15.2c15.1-.4 29.7 5.5 40.2 16.1z"/><path d="m787.9 99.2c30.2.5 54.4 24.7 54.1 54.2s-25 53.2-55.3 53c-30.2-.2-54.7-24.1-54.7-53.6 0-14.4 5.9-28.1 16.4-38.2 10.6-10.1 24.8-15.6 39.5-15.4zm0 89.2c21.1 0 34.4-14.7 34.4-35.6 0-20.8-13.3-35.5-34.4-35.5s-34.5 14.7-34.5 35.5 13.3 35.6 34.5 35.6z"/><path d="m859.7 101.8h19.9v15.8c6.9-12.1 20.4-19.2 34.5-18.3 20.3 0 37.8 11.9 37.8 39v65.7h-19.9v-60.2c0-19.2-11.3-26.3-23.8-26.3-16.6 0-29.1 10.3-29.1 34v52.5h-19.3v-102.2z"/><path d="m988.8 160c0 17.8 17 29.5 35.3 29.5 11.5-.4 22.2-6 28.7-15.2l15.1 11.2c-11 14-28.3 21.8-46.4 20.8-33.1 0-53.8-23.2-53.8-53.6-.6-14.2 4.9-28.1 15.1-38.2 10.2-10.2 24.3-15.7 38.9-15.4 36.9 0 51 27.5 51 53.8v6.9zm62.7-15.6c-.5-17-10.1-29.5-30.2-29.5-17.1-.1-31.4 12.8-32.5 29.5z"/><path clip-rule="evenodd" d="m127 6.4c-2.1-2.5-5.6-3.1-8.4-1.5l-2.6 1.4-28.3 16.1 6.6 11.6 18.4-10.5-4.5 24.6 13.1 2.4 4.6-24.7 13.6 16.2 10.2-8.6-20.6-24.6h-.1zm-39.7 207.5c6.8 0 12.3-5.4 12.3-12s-5.5-12-12.3-12-12.3 5.4-12.3 12c-.1 6.6 5.5 12 12.3 12zm16.5-65.9-4.4 24.7-13.2-2.4 4.4-24.6-18.4 10.6-6.7-11.6 28.1-16.1 2.6-1.5c2.8-1.6 6.3-1 8.4 1.5l2 2.4 20.9 24.5-10.2 8.7zm10.7-59-4.4 24.7-13.2-2.4 4.4-24.5-18.3 10.5-6.6-11.6 28-16v-.2h.2l2.6-1.5c2.8-1.6 6.3-1 8.4 1.5l2 2.3 20.8 24.6-10.2 8.7zm-86.3 97.6h-.1l-2.7-.8c-2.9-.8-4.8-3.6-4.6-6.6l2.4-33.4 12.7.9-1.5 20.3 19.7-13.4 7.1 10.5-19.3 13.1 19.7 5.7-3.5 12.2zm130.7 13.8-.9 2.9c-.9 2.8-3.5 4.7-6.5 4.5l-2.8-.2-.2.1-.1-.1-31-2.1.8-12.7 20.6 1.4-13.5-18.9 10.3-7.4 13.8 19.4 6-19.6 12.1 3.7zm36.4-68.8 1.5 2.7c1.5 2.7.9 6.1-1.5 8.1l-2.2 1.9v.1h-.1l-24.1 20.4-8.4-9.9 15.8-13.4-23.7-4.2 2.3-12.8 23.9 4.2-10-18 11.3-6.3zm-24.5-55.8-21.4 11.5-6.2-11.4 21.1-11.3-19.3-7.9 4.9-12 29.4 11.9.1-.1.1.2 2.7 1.1c2.9 1.2 4.5 4.2 4 7.2l-.5 3-5.5 30.5-12.8-2.3zm-143.6 26.8 23.8 4-2.2 12.8-24-4.1 10.2 18-11.3 6.4-15.4-27.1-1.5-2.6c-1.5-2.7-.9-6.1 1.4-8.1l2.2-1.9v-.1h.1l23.8-20.5 8.5 9.9zm35.9-55.4 15.8 17.6-9.7 8.7-16.2-18-3.7 20.5-12.8-2.3 5.6-30.4.6-3.1c.5-3 3.1-5.2 6.1-5.3l2.8-.1.1-.1.1.1 31.8-1.3.5 13z" fill-rule="evenodd"/></g></svg>`, sub: 'Vector Database' },
+    'FAISS': { icon: 'https://cdn.simpleicons.org/meta/0668E1', sub: 'Vector Similarity' },
+    'Qdrant': { icon: 'https://qdrant.tech/img/qdrant-logo.svg', sub: 'Vector Database' },
+    'AWS S3': { icon: 'https://upload.wikimedia.org/wikipedia/commons/b/bc/Amazon-S3-Logo.svg', sub: 'Object Storage' },
+    'AWS': { icon: 'https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg', sub: 'Cloud Platform' },
+    'Azure': { icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/azure/azure-original.svg', sub: 'Cloud Platform' },
+    'FHIR R4': { icon: 'https://hl7.org/fhir/assets/images/fhir-logo-www.png', sub: 'Healthcare Standard' }
+  };
+
+  if (!document.getElementById('tech-stack-styles')) {
+    const style = document.createElement('style');
+    style.id = 'tech-stack-styles';
+    style.innerHTML = `
+      [data-theme="light"] .theme-invert-icon { filter: invert(1); }
+      [data-theme="light"] .card-icon-container { background: #e2e8f0 !important; border-color: #cbd5e1 !important; }
+    `;
+    document.head.appendChild(style);
+  }
+
+  const getIconHTML = (s) => {
+    const details = skillDetails[s];
+    if (!details) return `<span style="font-size:24px;">🔧</span>`;
+    
+    const isWhite = details.icon.includes('white');
+    const imgClass = isWhite ? 'theme-invert-icon' : '';
+
+    if (details.icon.startsWith('<svg')) {
+      return details.icon;
+    }
+    if (details.icon.startsWith('/') || details.icon.startsWith('http')) {
+      return `<img src="${details.icon}" class="${imgClass}" style="width:32px;height:32px;object-fit:contain;" alt="${s} icon" />`;
+    }
+    return `<span style="font-size:26px;line-height:1;display:flex;align-items:center;justify-content:center;">${details.icon}</span>`;
+  };
+
+  const getSub = (s) => skillDetails[s]?.sub || 'Technology';
+
   const categories = [
-    { label: 'AI / ML', key: 'ai_ml', color: 'var(--accent)' },
+    { label: 'AI & Machine Learning', key: 'ai_ml', color: 'var(--accent)' },
     { label: 'MLOps & DevOps', key: 'mlops', color: 'var(--accent-2)' },
-    { label: 'Languages', key: 'languages', color: 'var(--accent-3)' },
-    { label: 'Data', key: 'data', color: 'var(--green)' },
-    { label: 'Databases', key: 'databases', color: 'var(--yellow)' }
+    { label: 'Programming Languages', key: 'languages', color: 'var(--accent-3)' },
+    { label: 'Data Processing & Analytics', key: 'data', color: 'var(--green)' },
+    { label: 'Databases & Infrastructure', key: 'databases', color: 'var(--yellow)' },
+    { label: 'Cloud Architecture', key: 'cloud', color: 'var(--accent)' }
   ];
+
   container.innerHTML = categories.map(cat => `
-    <div class="skill-category animate-on-scroll">
-      <h4 style="color:${cat.color}">${cat.label}</h4>
-      <div class="skill-list">
-        ${skills[cat.key]?.map(s => `<span class="skill-chip">${s}</span>`).join('') || ''}
+    <div class="skill-category animate-on-scroll" style="width: 100%;">
+      <h3 style="color:var(--text); font-family:var(--font-display); font-size:28px; font-weight:700; margin-bottom:28px; display:flex; align-items:center; gap:12px;">
+        ${cat.label}
+      </h3>
+      <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(260px, 1fr)); gap:20px;">
+        ${skills[cat.key]?.map(s => `
+          <div class="card" title="${s}" style="display:flex; align-items:center; gap:18px; padding:20px; border:1px solid var(--border); background:var(--bg-card); border-radius:16px; transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1); cursor:default;" onmouseover="this.style.background='var(--bg-card-hover)'; this.style.transform='translateY(-4px)'; this.style.borderColor='${cat.color}40'; this.style.boxShadow='var(--glow-strong), 0 0 20px ${cat.color}20';" onmouseout="this.style.background='var(--bg-card)'; this.style.transform='translateY(0)'; this.style.borderColor='var(--border)'; this.style.boxShadow='none';">
+            <div class="card-icon-container" style="display:flex; justify-content:center; align-items:center; width:54px; height:54px; background:var(--bg-2); border-radius:12px; border:1px solid var(--border);">
+              ${getIconHTML(s)}
+            </div>
+            <div style="display:flex; flex-direction:column;">
+              <span style="font-size:16px; font-weight:600; color:var(--text); font-family:var(--font-display); letter-spacing:0.5px;">${s}</span>
+              <span style="font-size:13px; color:var(--text-muted); font-family:var(--font-body); margin-top:4px;">${getSub(s)}</span>
+            </div>
+          </div>
+        `).join('') || ''}
       </div>
     </div>
   `).join('');
+
   container.querySelectorAll('.animate-on-scroll').forEach(el => {
     el.style.opacity = '0'; el.style.transform = 'translateY(30px)';
     el.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
@@ -472,7 +557,7 @@ function renderPlaygroundUI(playgroundType) {
       </div>
     `;
   }
-  
+
   if (playgroundType === 'neoverse') {
     return `
       <div style="display:grid; grid-template-columns:1fr 1.2fr; gap:16px; margin-bottom:16px;">
@@ -500,7 +585,7 @@ function renderPlaygroundUI(playgroundType) {
       </div>
     `;
   }
-  
+
   if (playgroundType === 'nvdnlp') {
     return `
       <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:14px;">
@@ -525,7 +610,7 @@ function renderPlaygroundUI(playgroundType) {
       </div>
     `;
   }
-  
+
   if (playgroundType === 'pothole') {
     return `
       <div style="display:grid; grid-template-columns:1.2fr 1fr; gap:16px; margin-bottom:14px;">
@@ -548,7 +633,7 @@ function renderPlaygroundUI(playgroundType) {
       </div>
     `;
   }
-  
+
   if (playgroundType === 'weapon') {
     return `
       <div style="display:grid; grid-template-columns:1.2fr 1fr; gap:16px; margin-bottom:14px;">
@@ -571,7 +656,7 @@ function renderPlaygroundUI(playgroundType) {
       </div>
     `;
   }
-  
+
   if (playgroundType === 'polyps') {
     return `
       <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; align-items:center; margin-bottom:14px;">
@@ -595,7 +680,7 @@ function renderPlaygroundUI(playgroundType) {
       </div>
     `;
   }
-  
+
   if (playgroundType === 'codecure') {
     return `
       <div style="margin-bottom:12px; display:flex; gap:12px; align-items:center; justify-content:space-between;">
@@ -711,15 +796,15 @@ function bindPlaygroundEvents(playgroundType) {
     const select = document.getElementById('fhirflow-claim-select');
     const consoleEl = document.getElementById('fhirflow-console');
     if (!runBtn || !consoleEl) return;
-    
+
     runBtn.addEventListener('click', () => {
       runBtn.disabled = true;
       const type = select.value;
-      
+
       // Clear nodes
       document.querySelectorAll('.flowchart-node').forEach(n => n.className = 'flowchart-node');
       consoleEl.innerHTML = '';
-      
+
       const log = (text, type = 'system', delay = 0) => {
         setTimeout(() => {
           let classname = 'log-system';
@@ -739,11 +824,11 @@ function bindPlaygroundEvents(playgroundType) {
       };
 
       log('LangGraph orchestrator initiated claims agent pipeline.', 'system', 0);
-      
+
       // Step 1: Policy Detector
       setNode('node-policy', 'active', 500);
       log('[Policy Detector] Ingesting Claim medical record and matching against active payer guidelines...', 'info', 600);
-      
+
       if (type === 'claim_approved') {
         log('[Policy Detector] Guideline Match: CPT-99213 matches outpatient routine standards. Checking rule matrices... Pass.', 'success', 1800);
         setNode('node-policy', 'success', 1800);
@@ -818,11 +903,11 @@ function bindPlaygroundEvents(playgroundType) {
     const substanceEl = document.getElementById('neoverse-substance');
     const badge = document.getElementById('neoverse-badge');
     if (!runBtn || !consoleEl) return;
-    
+
     runBtn.addEventListener('click', () => {
       runBtn.disabled = true;
       const text = textarea.value.toLowerCase();
-      
+
       consoleEl.innerHTML = `<div>&gt; Ingesting social media post content stream...</div>`;
       scoreEl.textContent = 'Calculating...';
       clusterEl.textContent = 'Matching...';
@@ -836,7 +921,7 @@ function bindPlaygroundEvents(playgroundType) {
 
       setTimeout(() => {
         let isDrug = text.includes('tg') || text.includes('telegram') || text.includes('pills') || text.includes('coke') || text.includes('crystal') || text.includes('shipping') || text.includes('delivery');
-        
+
         if (isDrug) {
           scoreEl.textContent = '98.6%';
           clusterEl.textContent = 'Cluster #14 (Trafficking Rings)';
@@ -884,7 +969,7 @@ function bindPlaygroundEvents(playgroundType) {
         if (svc === 'ssh') {
           consoleEl.innerHTML += `<div style="color:var(--yellow)">&gt; [WARNING] Found vulnerable OpenSSH version (v8.9p1) on target local node.</div>`;
           consoleEl.innerHTML += `<div>&gt; [NLP Explainer] Matching CVE-2025-1111 severity scores via NVD endpoint... Base Score: 9.8 CRITICAL.</div>`;
-          
+
           setTimeout(() => {
             consoleEl.innerHTML += `<div>&gt; trigger auto-remediation: Applying patch definitions for OpenSSH...</div>`;
             consoleEl.innerHTML += `<div>&gt; $ systemctl stop sshd.service</div>`;
@@ -903,7 +988,7 @@ function bindPlaygroundEvents(playgroundType) {
         } else if (svc === 'mysql') {
           consoleEl.innerHTML += `<div style="color:var(--yellow)">&gt; [WARNING] Found vulnerable MySQL database daemon (v8.0.28) on system.</div>`;
           consoleEl.innerHTML += `<div>&gt; [NLP Explainer] Matching CVE-2025-2234 via NVD API... Base Score: 8.8 HIGH.</div>`;
-          
+
           setTimeout(() => {
             consoleEl.innerHTML += `<div>&gt; trigger auto-remediation: Restructuring system database configuration parameters...</div>`;
             consoleEl.innerHTML += `<div>&gt; $ systemctl stop mysql.service</div>`;
@@ -1153,7 +1238,7 @@ function bindPlaygroundEvents(playgroundType) {
         if (type === 'data_prep') {
           consoleEl.innerHTML += `<div style="color:var(--green)">&gt; pytest: 14 passed in 0.88s. All unit tests successfully cleared.</div>`;
           consoleEl.innerHTML += `<div>&gt; $ flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics</div>`;
-          
+
           setTimeout(() => {
             consoleEl.innerHTML += `<div style="color:var(--green)">&gt; Linter check: 0 errors detected.</div>`;
             consoleEl.innerHTML += `<div style="color:var(--green); font-weight:700;">&gt; Pull Request validation check: PASSED. Automatically merged into main! ✓</div>`;
@@ -1165,7 +1250,7 @@ function bindPlaygroundEvents(playgroundType) {
         } else {
           consoleEl.innerHTML += `<div style="color:var(--red)">&gt; pytest: FAILED. 3 tests failed inside tests/test_models.py.</div>`;
           consoleEl.innerHTML += `<div>&gt; $ flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics</div>`;
-          
+
           setTimeout(() => {
             consoleEl.innerHTML += `<div style="color:var(--red)">&gt; Linter error (Line 42): IndentationError: unexpected indent</div>`;
             consoleEl.innerHTML += `<div style="color:var(--red); font-weight:700;">&gt; Pull Request blocked. Review requested from community mentors! ✗</div>`;
