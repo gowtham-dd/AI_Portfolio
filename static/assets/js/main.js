@@ -227,25 +227,6 @@ async function loadGitHubRepos(containerId) {
 function renderProjectCard(p) {
   const tagColors = { 'Agentic AI': '', 'NLP + Security': 'tag-orange', 'Generative AI': 'tag-purple', 'Computer Vision': 'tag-green', 'Community': 'tag-green' };
   const colorClass = tagColors[p.category] || '';
-  return `
-    <a href="${p.github}" target="_blank" class="card project-card animate-on-scroll">
-      <div class="category-tag" style="color:${p.color}">${p.category}</div>
-      <h3>${p.title}</h3>
-      <div class="subtitle">${p.subtitle}</div>
-      <div class="description">${p.description}</div>
-      <div class="tags">${p.tags.slice(0, 5).map(t => `<span class="tag ${colorClass}">${t}</span>`).join('')}</div>
-      <div class="impact">💡 ${p.impact}</div>
-      <div class="card-footer">
-        <span class="year">${p.year}</span>
-        <div class="links"><span class="link-btn">GitHub →</span></div>
-      </div>
-    </a>
-  `;
-}
-
-function renderProjectCard(p) {
-  const tagColors = { 'Agentic AI': '', 'NLP + Security': 'tag-orange', 'Generative AI': 'tag-purple', 'Computer Vision': 'tag-green', 'Community': 'tag-green' };
-  const colorClass = tagColors[p.category] || '';
   const hasImage = p.image ? true : false;
   
   return `
