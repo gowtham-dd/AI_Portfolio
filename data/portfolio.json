@@ -98,7 +98,9 @@
       "demo": null,
       "featured": true,
       "architecture": "5-agent LangGraph pipeline: Policy Detector → FHIR Updater → Claims Validator → Approval Router → Voice Agent",
-      "color": "#00d4ff"
+      "color": "#00d4ff",
+      "image": "/static/assets/images/fhirflow.png",
+      "playground": "fhirflow"
     },
     {
       "id": "neoverse",
@@ -127,7 +129,9 @@
       "github": "https://github.com/gowtham-dd/NeoVerse",
       "demo": null,
       "featured": true,
-      "color": "#a855f7"
+      "color": "#a855f7",
+      "image": "/static/assets/images/neoverse.png",
+      "playground": "neoverse"
     },
     {
       "id": "nvdnlp",
@@ -156,7 +160,9 @@
       "github": "https://github.com/gowtham-dd/NVDNLP",
       "demo": null,
       "featured": true,
-      "color": "#ff6b35"
+      "color": "#ff6b35",
+      "image": "/static/assets/images/nvdnlp.png",
+      "playground": "nvdnlp"
     },
     {
       "id": "pothole",
@@ -185,7 +191,9 @@
       "github": "https://github.com/gowtham-dd/PatholeDetection",
       "demo": null,
       "featured": false,
-      "color": "#22c55e"
+      "color": "#22c55e",
+      "image": "/static/assets/images/pothole.png",
+      "playground": "pothole"
     },
     {
       "id": "weapon-detection",
@@ -211,7 +219,9 @@
       "github": "https://github.com/gowtham-dd/WeaponDetectionAgent",
       "demo": null,
       "featured": false,
-      "color": "#ef4444"
+      "color": "#ef4444",
+      "image": "/static/assets/images/weapon.png",
+      "playground": "weapon"
     },
     {
       "id": "polyps",
@@ -236,7 +246,9 @@
       "github": "https://github.com/gowtham-dd/PolypsSegmentation",
       "demo": null,
       "featured": false,
-      "color": "#f59e0b"
+      "color": "#f59e0b",
+      "image": "/static/assets/images/polyps.png",
+      "playground": "polyps"
     },
     {
       "id": "literate-spork",
@@ -262,7 +274,9 @@
       "github": "https://github.com/gowtham-dd/literate-spork",
       "demo": null,
       "featured": false,
-      "color": "#06b6d4"
+      "color": "#06b6d4",
+      "image": "/static/assets/images/spork.png",
+      "playground": "spork"
     },
     {
       "id": "dnaseq-mlops",
@@ -289,7 +303,9 @@
       "github": "https://github.com/gowtham-dd/DNAseqMLOPS",
       "demo": null,
       "featured": false,
-      "color": "#3b82f6"
+      "color": "#3b82f6",
+      "image": "/static/assets/images/dnaseq.png",
+      "playground": "dnaseq"
     },
     {
       "id": "kidney-disease",
@@ -316,7 +332,9 @@
       "github": "https://github.com/gowtham-dd/KidneyDiseaseMLOPS",
       "demo": null,
       "featured": false,
-      "color": "#10b981"
+      "color": "#10b981",
+      "image": "/static/assets/images/kidney.png",
+      "playground": "kidney"
     },
     {
       "id": "codecure-ai",
@@ -343,7 +361,9 @@
       "github": "https://github.com/gowtham-dd/CodeCureAI26",
       "demo": null,
       "featured": false,
-      "color": "#8b5cf6"
+      "color": "#8b5cf6",
+      "image": "/static/assets/images/codecure.png",
+      "playground": "codecure"
     }
   ],
   "hackathons": [
@@ -460,10 +480,15 @@
     {
       "id": "ai-intern-noukha",
       "role": "AI Developer Intern",
-      "org": "Noukha",
+      "org": "Noukha Technologies",
       "period": "Mar 2026 - Present",
       "type": "Internship",
-      "description": "Working on building GenAI-powered applications, focusing on scalable AI integrations and real-world deployment of intelligent systems.",
+      "description": "Orchestrated generative AI systems and multi-agent workflows, driving operational speed and semantic recall optimizations.",
+      "bullets": [
+        "Designed LangGraph multi-agent systems, reducing average LLM system latency by 32% and compute cost by 20%.",
+        "Engineered FastAPI backend serving up to 5,000+ daily production API requests with a 99.9% uptime rate.",
+        "Optimized semantic recall query paths in AWS S3 Vectors , improving search precision by 45%."
+      ],
       "icon": "🤖"
     },
     {
@@ -472,7 +497,12 @@
       "org": "Pixel Cognitix",
       "period": "Oct 2025 - Present",
       "type": "Internship",
-      "description": "Developing AI-driven automations and workflows for internal operations and client projects, improving efficiency and scalability.",
+      "description": "Constructed high-speed web scraping, parsing, and classification agents to feed training pipelines for custom LLM models.",
+      "bullets": [
+        "Built automated ingest, parse, and classification scripts using n8n + Python, saving 15+ operational hours per week.",
+        "Ingested and normalized over 2.5 million rows of semi-anonymous web data to train local analytical networks.",
+        "Enhanced local threat classifier performance by 18% through targeted fine-tuning and system prompt engineering."
+      ],
       "icon": "⚙️"
     },
     {
@@ -481,7 +511,12 @@
       "org": "Alesa AI (UK)",
       "period": "Mar 2025 - Sep 2025",
       "type": "Internship",
-      "description": "Contributed to building AI-powered applications including Noulez and SnagNinja, focusing on backend systems and intelligent automation solutions.",
+      "description": "Collaborated with an international engineering team to build, optimize, and scale production backend systems for AI-powered mobile apps.",
+      "bullets": [
+        "Developed and scaled backend APIs for 2 flagship applications (Noulez & SnagNinja) serving thousands of users.",
+        "Optimized SQL indexing and database queries, achieving a 40% reduction in database read response times.",
+        "Integrated push notifications and localized scheduling loops that increased daily active users (DAUs) by 22%."
+      ],
       "icon": "🌍"
     },
     {
@@ -490,7 +525,12 @@
       "org": "Pyroguards (CBE)",
       "period": "Jan 2025 - Mar 2025",
       "type": "Internship",
-      "description": "Built a production-grade phishing URL classifier using machine learning, enhancing cybersecurity detection capabilities.",
+      "description": "Built a highly optimized machine learning classifier detecting malicious signatures and phishing nodes.",
+      "bullets": [
+        "Engineered an XGBoost/Scikit-learn URL classifier achieving 98.4% accuracy in detecting phishing vectors.",
+        "Curated and normalized a balanced training set of 1.2 million URL signatures to eliminate database bias.",
+        "Containerized security model using FastAPI and Docker, achieving a 95ms median response time on system endpoints."
+      ],
       "icon": "🔐"
     },
     {
@@ -499,7 +539,12 @@
       "org": "GDGoC SKASC",
       "period": "2024 - 2025",
       "type": "Leadership",
-      "description": "Leading and mentoring students in AI and Machine Learning through hands-on projects, technical seminars, and knowledge-sharing sessions.",
+      "description": "Directed tech curriculums, built student developer pathways, and mentored coding teams on deep learning systems.",
+      "bullets": [
+        "Led a technical community of 200+ members, conducting 15+ hands-on bootcamps on Deep Learning and MLOps.",
+        "Mentored 10+ student coding teams, resulting in 3 first-place wins at regional and local college hackathons.",
+        "Published 3 comprehensive open-source ML roadmap repositories, gaining 100+ combined student stars on GitHub."
+      ],
       "icon": "🧠"
     },
     {
@@ -508,7 +553,12 @@
       "org": "GDGoC SKASC",
       "period": "2023 - 2024",
       "type": "Leadership",
-      "description": "Leading and mentoring students in App Developement and GitHub through hands-on projects, technical seminars, and knowledge-sharing sessions.",
+      "description": "Educated and trained student engineers in mobile framework architectures, modular coding, and open-source contributions.",
+      "bullets": [
+        "Conducted Flutter bootcamps for 150+ students, resulting in 25+ student-published cross-platform apps.",
+        "Spearheaded collaborative coding seminars, onboarding 120+ student developers to Git and collaborative workflows.",
+        "Architected standard MVVM skeleton codes for chapter projects, ensuring 100% adherence to clean code guidelines."
+      ],
       "icon": "🧠"
     },
     {
@@ -517,7 +567,12 @@
       "org": "Literate Spork",
       "period": "2024 - Present",
       "type": "Open Source",
-      "description": "Founded and manage a GitHub-based learning community mentoring 50+ students through 20+ hands-on Data Science and GenAI projects.",
+      "description": "Founded and scaling a project-driven GitHub student community providing real-world MLOps mentorship.",
+      "bullets": [
+        "Founded a GitHub collaborative workspace, mentoring 50+ students in building and packaging predictive systems.",
+        "Curated and maintained 20+ open-source project repositories covering NLP, computer vision, and agentic AI.",
+        "Conducted 40+ formal peer code reviews, improving student pull request optimization rates by 25%."
+      ],
       "icon": "🚀"
     }
   ],

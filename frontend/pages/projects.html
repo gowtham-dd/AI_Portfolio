@@ -110,25 +110,7 @@
       const container = document.getElementById('all-projects');
       const filtered = filter === 'all' ? allProjects : allProjects.filter(p => p.category === filter);
 
-      const tagColors = { 'Agentic AI': '', 'NLP + Security': 'tag-orange', 'Generative AI': 'tag-purple', 'Computer Vision': 'tag-green', 'Community': 'tag-green' };
-
-      container.innerHTML = filtered.map(p => {
-        const colorClass = tagColors[p.category] || '';
-        return `
-          <a href="${p.github}" target="_blank" class="card project-card" style="animation:fadeUp 0.6s ease both;">
-            <div class="category-tag" style="color:${p.color}">${p.category}</div>
-            <h3>${p.title}</h3>
-            <div class="subtitle">${p.subtitle}</div>
-            <div class="description">${p.description}</div>
-            <div class="tags">${p.tags.slice(0, 6).map(t => `<span class="tag ${colorClass}">${t}</span>`).join('')}</div>
-            <div class="impact">💡 ${p.impact}</div>
-            <div class="card-footer">
-              <span class="year">${p.year}</span>
-              <span class="link-btn">GitHub →</span>
-            </div>
-          </a>
-        `;
-      }).join('');
+      container.innerHTML = filtered.map(p => window.portfolioUtils.renderProjectCard(p)).join('');
 
       if (!filtered.length) {
         container.innerHTML = `<div style="color:var(--text-dim);font-family:var(--font-mono);font-size:13px;grid-column:1/-1;">No projects in this category yet.</div>`;

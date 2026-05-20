@@ -978,3 +978,226 @@ footer .footer-links a:hover { color: var(--accent); }
   footer { flex-direction: column; padding: 30px 24px; }
   .chatbot-panel { width: calc(100% - 40px); right: 20px; }
 }
+
+/* ─── INTERACTIVE PROJECTS & PREMIUM LAB MODAL ────────────────── */
+.project-card {
+  transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
+}
+.project-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--border-glow);
+  box-shadow: var(--shadow), var(--glow);
+}
+.project-card:hover .proj-img {
+  transform: scale(1.06);
+}
+
+.project-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(8, 8, 12, 0.75);
+  backdrop-filter: blur(16px);
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  padding: 24px;
+}
+.project-modal-backdrop.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.project-modal-container {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  width: 100%;
+  max-width: 1080px;
+  max-height: 85vh;
+  overflow-y: auto;
+  box-shadow: var(--shadow), var(--glow-strong);
+  display: grid;
+  grid-template-columns: 1.2fr 1.8fr;
+  transform: scale(0.92) translateY(30px);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  border-color: var(--border-glow);
+  outline: none;
+}
+.project-modal-backdrop.active .project-modal-container {
+  transform: scale(1) translateY(0);
+}
+
+.project-modal-close-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  color: var(--text);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 100;
+  transition: all var(--transition);
+}
+.project-modal-close-btn:hover {
+  background: var(--red);
+  color: #fff;
+  border-color: var(--red);
+}
+
+.project-modal-sidebar {
+  padding: 32px;
+  border-right: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.01);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.project-modal-main {
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+@media (max-width: 900px) {
+  .project-modal-container {
+    grid-template-columns: 1fr;
+    max-height: 90vh;
+  }
+  .project-modal-sidebar {
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    padding: 24px;
+  }
+  .project-modal-main {
+    padding: 24px;
+  }
+}
+
+/* Playground Styling */
+.modal-playground {
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 2px 10px rgba(0,0,0,0.2);
+}
+[data-theme="light"] .modal-playground {
+  background: rgba(0, 0, 0, 0.03);
+}
+
+.playground-console {
+  background: #040711;
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 6px;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  line-height: 1.6;
+  padding: 16px;
+  height: 200px;
+  overflow-y: auto;
+  color: #a9b7c6;
+  box-shadow: inset 0 2px 8px rgba(0,0,0,0.8);
+}
+.playground-console .log-system { color: var(--accent); }
+.playground-console .log-success { color: var(--green); }
+.playground-console .log-warn { color: var(--yellow); }
+.playground-console .log-error { color: var(--red); }
+.playground-console .log-info { color: var(--accent-2); }
+
+/* Interactive Flow Nodes */
+.flowchart-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 20px;
+  overflow-x: auto;
+  padding: 12px 4px;
+}
+.flowchart-node {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-dim);
+  text-align: center;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+.flowchart-node.active {
+  border-color: var(--accent);
+  background: rgba(0, 212, 255, 0.08);
+  color: #fff;
+  box-shadow: 0 0 15px rgba(0,212,255,0.25);
+  transform: translateY(-2px);
+}
+.flowchart-arrow {
+  color: var(--border);
+  font-weight: bold;
+}
+.flowchart-node.success {
+  border-color: var(--green);
+  background: rgba(34, 197, 94, 0.08);
+  color: #fff;
+}
+
+/* SHAP chart styling */
+.shap-bar-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 14px;
+}
+.shap-bar-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+}
+.shap-bar-label {
+  width: 140px;
+  color: var(--text-dim);
+  text-align: right;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.shap-bar-track {
+  flex-grow: 1;
+  height: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+  position: relative;
+  overflow: hidden;
+}
+.shap-bar-fill {
+  height: 100%;
+  border-radius: 6px;
+  transition: width 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Experience Bullet Spacing */
+.experience-bullets li {
+  margin-left: 4px;
+}
+.experience-bullets li::marker {
+  color: var(--accent);
+}

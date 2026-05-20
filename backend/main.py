@@ -22,11 +22,8 @@ DATA_FILE = Path("data/portfolio.json")
 _portfolio_cache: dict | None = None
 
 def load_data() -> dict:
-    global _portfolio_cache
-    if _portfolio_cache is None:
-        with open(DATA_FILE, "r", encoding="utf-8") as f:
-            _portfolio_cache = json.load(f)
-    return _portfolio_cache
+    with open(DATA_FILE, "r", encoding="utf-8") as f:
+        return json.load(f)
 
 
 
