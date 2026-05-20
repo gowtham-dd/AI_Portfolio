@@ -16,7 +16,7 @@ app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_credentials=True, 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 app.mount("/static", StaticFiles(directory=BASE_DIR / "static"), name="static")
-DATA_FILE = Path("data/portfolio.json")
+DATA_FILE = BASE_DIR / "data" / "portfolio.json"
 
 # ─── Module-level cache ───────────────────────────────────────────
 _portfolio_cache: dict | None = None
@@ -32,16 +32,16 @@ def load_data() -> dict:
 
 # ─── Pages ──────────────────────────────────────────────────────────
 @app.get("/")
-async def index(): return FileResponse("frontend/pages/index.html")
+async def index(): return FileResponse(BASE_DIR / "frontend/pages/index.html")
 
 @app.get("/projects")
-async def projects_page(): return FileResponse("frontend/pages/projects.html")
+async def projects_page(): return FileResponse(BASE_DIR / "frontend/pages/projects.html")
 
 @app.get("/about")
-async def about_page(): return FileResponse("frontend/pages/about.html")
+async def about_page(): return FileResponse(BASE_DIR / "frontend/pages/about.html")
 
 @app.get("/contact")
-async def contact_page(): return FileResponse("frontend/pages/contact.html")
+async def contact_page(): return FileResponse(BASE_DIR / "frontend/pages/contact.html")
 
 # ─── Data API ────────────────────────────────────────────────────────
 @app.get("/api/portfolio")
