@@ -99,7 +99,7 @@
       "featured": true,
       "architecture": "5-agent LangGraph pipeline: Policy Detector → FHIR Updater → Claims Validator → Approval Router → Voice Agent",
       "color": "#00d4ff",
-      "image": "/static/assets/images/fhirflow.png",
+      "image": "/static/assets/images/fhirflow.webp",
       "playground": "fhirflow"
     },
     {
@@ -130,7 +130,7 @@
       "demo": null,
       "featured": true,
       "color": "#a855f7",
-      "image": "/static/assets/images/neoverse.png",
+      "image": "/static/assets/images/neoverse.webp",
       "playground": "neoverse"
     },
     {
@@ -161,7 +161,7 @@
       "demo": null,
       "featured": true,
       "color": "#ff6b35",
-      "image": "/static/assets/images/nvdnlp.png",
+      "image": "/static/assets/images/nvdnlp.webp",
       "playground": "nvdnlp"
     },
     {
@@ -192,7 +192,7 @@
       "demo": null,
       "featured": false,
       "color": "#22c55e",
-      "image": "/static/assets/images/pothole.png",
+      "image": "/static/assets/images/pothole.webp",
       "playground": "pothole"
     },
     {
@@ -220,7 +220,7 @@
       "demo": null,
       "featured": false,
       "color": "#ef4444",
-      "image": "/static/assets/images/weapon.png",
+      "image": "/static/assets/images/weapon.webp",
       "playground": "weapon"
     },
     {
@@ -247,7 +247,7 @@
       "demo": null,
       "featured": false,
       "color": "#f59e0b",
-      "image": "/static/assets/images/polyps.png",
+      "image": "/static/assets/images/polyps.webp",
       "playground": "polyps"
     },
     {
@@ -275,7 +275,7 @@
       "demo": null,
       "featured": false,
       "color": "#06b6d4",
-      "image": "/static/assets/images/spork.png",
+      "image": "/static/assets/images/spork.webp",
       "playground": "spork"
     },
     {
@@ -304,7 +304,7 @@
       "demo": null,
       "featured": false,
       "color": "#3b82f6",
-      "image": "/static/assets/images/dnaseq.png",
+      "image": "/static/assets/images/dnaseq.webp",
       "playground": "dnaseq"
     },
     {
@@ -333,7 +333,7 @@
       "demo": null,
       "featured": false,
       "color": "#10b981",
-      "image": "/static/assets/images/kidney.png",
+      "image": "/static/assets/images/kidney.webp",
       "playground": "kidney"
     },
     {
@@ -362,7 +362,7 @@
       "demo": null,
       "featured": false,
       "color": "#8b5cf6",
-      "image": "/static/assets/images/codecure.png",
+      "image": "/static/assets/images/codecure.webp",
       "playground": "codecure"
     }
   ],

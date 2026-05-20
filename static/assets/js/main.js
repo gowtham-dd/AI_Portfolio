@@ -233,7 +233,7 @@ function renderProjectCard(p) {
     <div class="card project-card animate-on-scroll" onclick="window.portfolioUtils.openProjectModal('${p.id}')">
       ${hasImage ? `
         <div class="project-card-image-wrapper" style="position:relative; width:100%; height:190px; overflow:hidden; border-bottom:1px solid var(--border);">
-          <img src="${p.image}" alt="${p.title}" style="width:100%; height:100%; object-fit:cover; transition: transform 0.5s ease;" class="proj-img"/>
+          <img src="${p.image}" alt="${p.title}" loading="lazy" style="width:100%; height:100%; object-fit:cover; transition: transform 0.5s ease;" class="proj-img"/>
           <div style="position:absolute; inset:0; background:linear-gradient(to bottom, transparent, rgba(10,10,10,0.85));"></div>
         </div>
       ` : ''}
