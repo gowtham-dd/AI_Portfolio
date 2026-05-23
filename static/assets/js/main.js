@@ -1,3 +1,5 @@
+console.log("🚀 Gowtham D - Portfolio Frontend Application loaded successfully!");
+
 // ─── CURSOR ──────────────────────────────────────────────────────
 const cursor = document.getElementById('cursor');
 const cursorRing = document.getElementById('cursor-ring');
@@ -198,10 +200,19 @@ document.querySelectorAll('[data-count]').forEach(el => counterObserver.observe(
 
 // ─── PORTFOLIO UTILS ──────────────────────────────────────────────
 async function loadData(endpoint) {
+  console.log(`[Portfolio API] Fetching: ${endpoint}`);
   try {
     const res = await fetch(endpoint);
-    return await res.json();
-  } catch { return null; }
+    if (!res.ok) {
+      console.warn(`[Portfolio API] Fetch warning: ${endpoint} returned status ${res.status}`);
+    }
+    const data = await res.json();
+    console.log(`[Portfolio API] Fetch success: ${endpoint}`);
+    return data;
+  } catch (err) {
+    console.error(`[Portfolio API] Fetch failed: ${endpoint}`, err);
+    return null;
+  }
 }
 
 async function loadGitHubRepos(containerId) {
