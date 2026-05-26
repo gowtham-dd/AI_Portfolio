@@ -111,6 +111,37 @@
       "playground": "fhirflow"
     },
     {
+      "id": "pr-reviewer",
+      "title": "PR Reviewer Agent",
+      "subtitle": "Autonomous PR Review & CI/CD Deployment Agent",
+      "year": 2026,
+      "category": "Agentic AI",
+      "tags": [
+        "Agentic AI",
+        "GitHub App",
+        "LangGraph",
+        "FastAPI",
+        "Docker",
+        "CI/CD"
+      ],
+      "description": "An autonomous AI agent designed to streamline development workflows by acting as a virtual team member on GitHub. It automatically intercepts pull requests, reviews code diffs for bugs, architectural design violations, and styling rules, runs test suites, generates code patches, and automatically redeploys CI/CD pipelines.",
+      "impact": "Reviews pull requests, runs automated test suites, and auto-deploys CI/CD pipelines with bug patches",
+      "tech_stack": [
+        "LangGraph",
+        "GitHub App Webhooks",
+        "FastAPI",
+        "Docker",
+        "Pytest",
+        "GitHub Actions"
+      ],
+      "github": "https://github.com/gowtham-dd/PR-Reviewer-Agent",
+      "demo": "https://github.com/apps/pullrequest-reviwer",
+      "featured": false,
+      "color": "#00d4ff",
+      "image": "/static/assets/images/pr_reviewer.webp",
+      "playground": "pr-reviewer"
+    },
+    {
       "id": "neoverse",
       "title": "NEXUS AI / NeoVerse",
       "subtitle": "Drug Trafficking Detection Multi-Agent System",
