@@ -3,16 +3,21 @@ console.log("🚀 Gowtham D - Portfolio Frontend Application loaded successfully
 // ─── CURSOR ──────────────────────────────────────────────────────
 const cursor = document.getElementById('cursor');
 const cursorRing = document.getElementById('cursor-ring');
-let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+let mouseX = 0, mouseY = 0, curX = 0, curY = 0, ringX = 0, ringY = 0;
 
 document.addEventListener('mousemove', e => {
   mouseX = e.clientX; mouseY = e.clientY;
-  if (cursor) cursor.style.transform = `translate(${mouseX - 6}px, ${mouseY - 6}px)`;
 });
 function animateRing() {
+  // Inner cursor tracking (fast, smooth tracking via GPU-accelerated translate3d)
+  curX += (mouseX - curX) * 0.75;
+  curY += (mouseY - curY) * 0.75;
+  if (cursor) cursor.style.transform = `translate3d(${curX - 6}px, ${curY - 6}px, 0)`;
+
+  // Outer cursor ring tracking (elastic tracking via GPU-accelerated translate3d)
   ringX += (mouseX - ringX) * 0.12;
   ringY += (mouseY - ringY) * 0.12;
-  if (cursorRing) cursorRing.style.transform = `translate(${ringX - 18}px, ${ringY - 18}px)`;
+  if (cursorRing) cursorRing.style.transform = `translate3d(${ringX - 18}px, ${ringY - 18}px, 0)`;
   requestAnimationFrame(animateRing);
 }
 animateRing();
@@ -208,6 +213,15 @@ async function loadData(endpoint) {
     }
     const data = await res.json();
     console.log(`[Portfolio API] Fetch success: ${endpoint}`);
+
+    // Automatically populate local projects cache to avoid future modal load latency
+    window.projectCache = window.projectCache || {};
+    if (endpoint === '/api/projects' && Array.isArray(data)) {
+      data.forEach(p => { window.projectCache[p.id] = p; });
+    } else if (endpoint === '/api/portfolio' && data && Array.isArray(data.projects)) {
+      data.projects.forEach(p => { window.projectCache[p.id] = p; });
+    }
+
     return data;
   } catch (err) {
     console.error(`[Portfolio API] Fetch failed: ${endpoint}`, err);
@@ -265,7 +279,9 @@ function renderProjectCard(p) {
           <span class="year" style="font-family:var(--font-mono); font-size:12px; color:var(--text-muted);">${p.year}</span>
           <div class="links" style="display:flex; gap:10px;">
             <a href="${p.github}" target="_blank" class="link-btn" onclick="event.stopPropagation();" style="text-decoration:none;">GitHub ↗</a>
-            ${p.playground ? `
+            ${p.id === 'pr-reviewer' ? `
+              <a href="${p.demo}" target="_blank" class="link-btn btn-playground" onclick="event.stopPropagation();" style="text-decoration:none; background:var(--accent); color:#000; border-color:var(--accent); font-weight:700; display:inline-flex; align-items:center; justify-content:center;">Try Lab ↗</a>
+            ` : p.playground ? `
               <button class="link-btn btn-playground" style="background:var(--accent); color:#000; border-color:var(--accent); font-weight:700;">Try Lab</button>
             ` : `
               <button class="link-btn btn-playground" style="background:transparent; color:var(--text); border-color:var(--border);">Details</button>
@@ -376,7 +392,7 @@ async function renderSkills(containerId) {
   const getIconHTML = (s) => {
     const details = skillDetails[s];
     if (!details) return `<span style="font-size:24px;">🔧</span>`;
-    
+
     const isWhite = details.icon.includes('white');
     const imgClass = isWhite ? 'theme-invert-icon' : '';
 
@@ -431,8 +447,11 @@ async function renderSkills(containerId) {
 
 // ─── PREMIUM MODAL IMPLEMENTATION ─────────────────────────────────
 async function openProjectModal(projectId) {
-  // Fetch detailed project info
-  const p = await loadData(`/api/projects/${projectId}`);
+  // Retrieve project from fast local cache, fallback to API if needed
+  let p = window.projectCache?.[projectId];
+  if (!p) {
+    p = await loadData(`/api/projects/${projectId}`);
+  }
   if (!p) return;
 
   // Create or select backdrop
@@ -542,6 +561,21 @@ async function openProjectModal(projectId) {
 
 // ─── PLAYGROUND HTML RENDERER ─────────────────────────────────────
 function renderPlaygroundUI(playgroundType) {
+  if (playgroundType === 'pr-reviewer') {
+    return `
+      <div style="background:#050810; border:1px solid var(--border); border-radius:8px; padding:32px 24px; text-align:center; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:16px; box-shadow: inset 0 2px 10px rgba(0,0,0,0.4);">
+        <div style="font-size:48px;">🤖</div>
+        <div style="font-family:var(--font-display); font-size:20px; font-weight:700; color:var(--text);">PR Reviewer GitHub App</div>
+        <p style="font-size:13.5px; color:var(--text-dim); max-width:440px; line-height:1.6; margin:0;">
+          This autonomous AI agent runs directly on your GitHub repositories. It automatically intercepts pull requests, reviews code diffs for bugs, tests your application, and applies fixes to your CI/CD pipelines. Install the official GitHub App directly on your account to try it!
+        </p>
+        <a href="https://github.com/apps/pullrequest-reviwer" target="_blank" class="btn btn-primary" onclick="event.stopPropagation();" style="text-decoration:none; padding:10px 24px; background:var(--accent); color:#000; font-weight:700; border-radius:6px; font-size:13.5px; display:inline-flex; align-items:center; gap:8px;">
+          Install GitHub App ↗
+        </a>
+      </div>
+    `;
+  }
+
   if (playgroundType === 'fhirflow') {
     return `
       <div class="flowchart-container">
