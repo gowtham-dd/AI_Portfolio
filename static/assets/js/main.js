@@ -214,16 +214,29 @@ async function loadData(endpoint) {
       const contentType = res.headers.get("content-type");
       if (contentType && contentType.includes("application/json")) {
         const data = await res.json();
-        console.log(`[Portfolio API] Live API Success: ${endpoint}`);
         
-        // Automatically populate local projects cache
-        window.projectCache = window.projectCache || {};
-        if (endpoint === '/api/projects' && Array.isArray(data)) {
-          data.forEach(p => { window.projectCache[p.id] = p; });
-        } else if (endpoint === '/api/portfolio' && data && Array.isArray(data.projects)) {
-          data.projects.forEach(p => { window.projectCache[p.id] = p; });
+        // If the live API returned empty data for GitHub calls (e.g. invalid/expired token), force fallback
+        let isInvalidGitHubData = false;
+        if (endpoint === '/api/github/repos' && (!data || data.length === 0)) {
+          isInvalidGitHubData = true;
+        } else if (endpoint === '/api/github/stats' && (!data || !data.public_repos)) {
+          isInvalidGitHubData = true;
         }
-        return data;
+
+        if (!isInvalidGitHubData) {
+          console.log(`[Portfolio API] Live API Success: ${endpoint}`);
+          
+          // Automatically populate local projects cache
+          window.projectCache = window.projectCache || {};
+          if (endpoint === '/api/projects' && Array.isArray(data)) {
+            data.forEach(p => { window.projectCache[p.id] = p; });
+          } else if (endpoint === '/api/portfolio' && data && Array.isArray(data.projects)) {
+            data.projects.forEach(p => { window.projectCache[p.id] = p; });
+          }
+          return data;
+        } else {
+          console.log(`[Portfolio API] Live API returned empty/invalid GitHub data, switching to static fallback...`);
+        }
       }
     }
   } catch (apiErr) {
