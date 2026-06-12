@@ -206,6 +206,31 @@ document.querySelectorAll('[data-count]').forEach(el => counterObserver.observe(
 // ─── PORTFOLIO UTILS ──────────────────────────────────────────────
 async function loadData(endpoint) {
   console.log(`[Portfolio API] Fetching: ${endpoint}`);
+  
+  // 1. Try to fetch the original endpoint first (works locally with FastAPI)
+  try {
+    const res = await fetch(endpoint);
+    if (res.ok) {
+      const contentType = res.headers.get("content-type");
+      if (contentType && contentType.includes("application/json")) {
+        const data = await res.json();
+        console.log(`[Portfolio API] Live API Success: ${endpoint}`);
+        
+        // Automatically populate local projects cache
+        window.projectCache = window.projectCache || {};
+        if (endpoint === '/api/projects' && Array.isArray(data)) {
+          data.forEach(p => { window.projectCache[p.id] = p; });
+        } else if (endpoint === '/api/portfolio' && data && Array.isArray(data.projects)) {
+          data.projects.forEach(p => { window.projectCache[p.id] = p; });
+        }
+        return data;
+      }
+    }
+  } catch (apiErr) {
+    console.log(`[Portfolio API] Live API failed/missing, switching to static fallback...`, apiErr);
+  }
+
+  // 2. Static Fallback (works on Vercel, Netlify, or raw static server)
   try {
     let url = endpoint;
     let isStaticFallback = false;
@@ -216,7 +241,6 @@ async function loadData(endpoint) {
       if (endpoint === '/api/github/stats') {
         url = 'https://api.github.com/users/gowtham-dd';
       } else if (endpoint === '/api/github/repos') {
-        // Fetch public repositories using the public REST API
         url = 'https://api.github.com/users/gowtham-dd/repos?sort=updated&per_page=8';
       } else {
         url = '/data/portfolio.json';
@@ -225,15 +249,15 @@ async function loadData(endpoint) {
 
     const res = await fetch(url);
     if (!res.ok) {
-      console.warn(`[Portfolio API] Fetch warning: ${url} returned status ${res.status}`);
+      throw new Error(`Static fetch warning: ${url} returned status ${res.status}`);
     }
     let data = await res.json();
-    console.log(`[Portfolio API] Fetch success: ${url}`);
+    console.log(`[Portfolio API] Static Fallback Success: ${url}`);
 
     if (isStaticFallback) {
-      // Map the response to the expected structure
+      // Map static data to match original API formats
       if (endpoint === '/api/portfolio') {
-        // Already loaded full portfolio
+        // Return full JSON
       } else if (endpoint === '/api/projects') {
         data = data.projects;
       } else if (endpoint.startsWith('/api/projects/')) {
@@ -255,7 +279,6 @@ async function loadData(endpoint) {
           name: data.name || "Gowtham D"
         };
       } else if (endpoint === '/api/github/repos') {
-        // Map GitHub REST response to match the GraphQL/backend response format
         data = data.map(r => ({
           name: r.name,
           description: r.description,
@@ -268,7 +291,7 @@ async function loadData(endpoint) {
       }
     }
 
-    // Automatically populate local projects cache to avoid future modal load latency
+    // Automatically populate local projects cache
     window.projectCache = window.projectCache || {};
     if (endpoint === '/api/projects' && Array.isArray(data)) {
       data.forEach(p => { window.projectCache[p.id] = p; });
@@ -277,8 +300,8 @@ async function loadData(endpoint) {
     }
 
     return data;
-  } catch (err) {
-    console.error(`[Portfolio API] Fetch failed: ${endpoint}`, err);
+  } catch (staticErr) {
+    console.error(`[Portfolio API] All fetch methods failed for ${endpoint}`, staticErr);
     return null;
   }
 }
