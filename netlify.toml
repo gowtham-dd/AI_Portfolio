@@ -1,0 +1,19 @@
+[[redirects]]
+  from = "/"
+  to = "/frontend/pages/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/projects"
+  to = "/frontend/pages/projects.html"
+  status = 200
+
+[[redirects]]
+  from = "/about"
+  to = "/frontend/pages/about.html"
+  status = 200
+
+[[redirects]]
+  from = "/contact"
+  to = "/frontend/pages/contact.html"
+  status = 200

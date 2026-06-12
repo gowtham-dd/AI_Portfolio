@@ -207,12 +207,66 @@ document.querySelectorAll('[data-count]').forEach(el => counterObserver.observe(
 async function loadData(endpoint) {
   console.log(`[Portfolio API] Fetching: ${endpoint}`);
   try {
-    const res = await fetch(endpoint);
-    if (!res.ok) {
-      console.warn(`[Portfolio API] Fetch warning: ${endpoint} returned status ${res.status}`);
+    let url = endpoint;
+    let isStaticFallback = false;
+
+    // Check if we need to load from local static assets or public API
+    if (endpoint.startsWith('/api/')) {
+      isStaticFallback = true;
+      if (endpoint === '/api/github/stats') {
+        url = 'https://api.github.com/users/gowtham-dd';
+      } else if (endpoint === '/api/github/repos') {
+        // Fetch public repositories using the public REST API
+        url = 'https://api.github.com/users/gowtham-dd/repos?sort=updated&per_page=8';
+      } else {
+        url = '/data/portfolio.json';
+      }
     }
-    const data = await res.json();
-    console.log(`[Portfolio API] Fetch success: ${endpoint}`);
+
+    const res = await fetch(url);
+    if (!res.ok) {
+      console.warn(`[Portfolio API] Fetch warning: ${url} returned status ${res.status}`);
+    }
+    let data = await res.json();
+    console.log(`[Portfolio API] Fetch success: ${url}`);
+
+    if (isStaticFallback) {
+      // Map the response to the expected structure
+      if (endpoint === '/api/portfolio') {
+        // Already loaded full portfolio
+      } else if (endpoint === '/api/projects') {
+        data = data.projects;
+      } else if (endpoint.startsWith('/api/projects/')) {
+        const projectId = endpoint.split('/').pop();
+        data = data.projects.find(p => p.id === projectId);
+      } else if (endpoint === '/api/hackathons') {
+        data = data.hackathons;
+      } else if (endpoint === '/api/experience') {
+        data = data.experience;
+      } else if (endpoint === '/api/personal') {
+        data = data.personal;
+      } else if (endpoint === '/api/github/stats') {
+        data = {
+          public_repos: data.public_repos,
+          followers: data.followers,
+          following: data.following,
+          avatar_url: data.avatar_url,
+          bio: data.bio,
+          name: data.name || "Gowtham D"
+        };
+      } else if (endpoint === '/api/github/repos') {
+        // Map GitHub REST response to match the GraphQL/backend response format
+        data = data.map(r => ({
+          name: r.name,
+          description: r.description,
+          stars: r.stargazers_count,
+          forks: r.forks_count,
+          language: r.language,
+          url: r.html_url,
+          updated_at: r.updated_at
+        }));
+      }
+    }
 
     // Automatically populate local projects cache to avoid future modal load latency
     window.projectCache = window.projectCache || {};
