@@ -407,22 +407,84 @@
   ],
   "hackathons": [
     {
+      "id": "snstech24",
+      "title": "SNS Tech Hack 2024",
+      "result": "1st Prize",
+      "project": "EV Charging Booking App",
+      "description": "Developed a complete EV charging slot booking application within 24 hours during the hackathon.",
+      "year": 2024,
+      "icon": "⚡",
+      "image": "/static/assets/images/sns_tech_hack_proof.jpg"
+    },
+    {
+      "id": "techhack24",
+      "title": "Tech Hack '24",
+      "result": "1st Prize + Best Application Award",
+      "project": "SocioMedico App",
+      "description": "AI-based hospital app that connects doctors and patients with intelligent diagnosis and real-time clinical support.",
+      "year": 2024,
+      "icon": "🏆",
+      "image": "/static/assets/images/techhack_proof.jpg"
+    },
+    {
+      "id": "icaitica26",
+      "title": "ICAITICA 2026 International Conference",
+      "result": "Best Paper Award",
+      "project": "Drug Trafficking Detection Agent",
+      "description": "Presented research on an AI agent detecting drug trafficking activities on Telegram and Reddit platforms.",
+      "year": 2026,
+      "icon": "📄",
+      "image": "/static/assets/images/best_paper_proof.jpg"
+    },
+    {
       "id": "hackappsters26",
       "title": "HackAppsters L&T Edutech Hackathon",
       "result": "2nd Place",
       "project": "Chest Radiogram Disease Classifier",
       "description": "Built a deep learning-based medical imaging model to classify 10+ chest diseases from radiograms with high accuracy.",
       "year": 2026,
-      "icon": "🥈"
+      "icon": "🥈",
+      "image": "/static/assets/images/hackappsters_proof.jpg"
     },
     {
-      "id": "hackvision26",
-      "title": "HackVision 2026",
-      "result": "3rd Prize",
-      "project": "Event Management Agent",
-      "description": "Developed a single intelligent agent capable of managing end-to-end event workflows including scheduling, coordination, and automation.",
+      "id": "neoverse26",
+      "title": "NeoVerse @ CIT 2026",
+      "result": "Finalist",
+      "project": "Illegal Trade Detection Agent",
+      "description": "Designed an AI agent to detect illegal activities like drug and human trafficking on semi-anonymous platforms such as Telegram and Reddit.",
       "year": 2026,
-      "icon": "🥉"
+      "icon": "🕵️",
+      "image": "/static/assets/images/neoverse_proof.png"
+    },
+    {
+      "id": "datathon26",
+      "title": "Datathon @ CIT 2026",
+      "result": "Finalist",
+      "project": "FHIRFlow Multi-Agent System",
+      "description": "Built a multi-agent healthcare system that validates and corrects FHIR claims by comparing them with updated policies.",
+      "year": 2026,
+      "icon": "🤖",
+      "image": "/static/assets/images/datathon_cit_proof.jpg"
+    },
+    {
+      "id": "kaggleplayground",
+      "title": "Kaggle Playground Series",
+      "result": "Top 50 & Top 100 Finisher",
+      "project": "Machine Learning Competitions",
+      "description": "Achieved Top 100 rank twice and Top 50 once in Kaggle Playground Series by building high-performance machine learning models.",
+      "year": 2026,
+      "icon": "📊",
+      "image": "/static/assets/images/kaggle_playground_proof.jpg"
+    },
+    {
+      "id": "chessskasc26",
+      "title": "Chess Gold @ SKASC Sports Meet 2026",
+      "result": "Gold Medal",
+      "project": "Chess Championship",
+      "description": "Secured the first place and gold medal in the chess tournament representing Yaayu house at Sri Krishna Arts and Science College.",
+      "year": 2026,
+      "icon": "🥇",
+      "image": "/static/assets/images/chess_gold_proof.jpg"
     },
     {
       "id": "techsprint26",
@@ -434,85 +496,13 @@
       "icon": "🚀"
     },
     {
-      "id": "neoverse26",
-      "title": "NeoVerse @ CIT 2026",
-      "result": "Finalist",
-      "project": "Illegal Trade Detection Agent",
-      "description": "Designed an AI agent to detect illegal activities like drug and human trafficking on semi-anonymous platforms such as Telegram and Reddit.",
+      "id": "hackvision26",
+      "title": "HackVision 2026",
+      "result": "3rd Prize",
+      "project": "Event Management Agent",
+      "description": "Developed a single intelligent agent capable of managing end-to-end event workflows including scheduling, coordination, and automation.",
       "year": 2026,
-      "icon": "🕵️"
-    },
-    {
-      "id": "datathon26",
-      "title": "Datathon @ CIT 2026",
-      "result": "Finalist",
-      "project": "FHIRFlow Multi-Agent System",
-      "description": "Built a multi-agent healthcare system that validates and corrects FHIR claims by comparing them with updated policies.",
-      "year": 2026,
-      "icon": "🤖"
-    },
-    {
-      "id": "icaitica26",
-      "title": "ICAITICA 2026 International Conference",
-      "result": "Best Paper Award",
-      "project": "Drug Trafficking Detection Agent",
-      "description": "Presented research on an AI agent detecting drug trafficking activities on Telegram and Reddit platforms.",
-      "year": 2026,
-      "icon": "📄"
-    },
-    {
-      "id": "codecureai26",
-      "title": "Codecure AI @ IIT BHU",
-      "result": "Finalist",
-      "project": "Molecule Toxicity Detection Agent",
-      "description": "Built an AI agent to detect toxicity in molecular structures and leveraged SHAP for explainability, identifying feature contribution percentages for each prediction.",
-      "year": 2026,
-      "icon": "🧪"
-    },
-    {
-      "id": "buildbridge26",
-      "title": "BuildBridge Hackathon @ GUVI",
-      "result": "Participant",
-      "project": "Doc Analyzer API",
-      "description": "Developed and deployed a production-grade document analysis API on Render within 3 hours, enabling fast and scalable document understanding.",
-      "year": 2026,
-      "icon": "📄"
-    },
-    {
-      "id": "kaggleplayground",
-      "title": "Kaggle Playground Series",
-      "result": "Top 50 & Top 100 Finisher",
-      "project": "Machine Learning Competitions",
-      "description": "Achieved Top 100 rank twice and Top 50 once in Kaggle Playground Series by building high-performance machine learning models.",
-      "year": 2026,
-      "icon": "📊"
-    },
-    {
-      "id": "techhack24",
-      "title": "Tech Hack '24",
-      "result": "1st Prize + Best Application Award",
-      "project": "SocioMedico App",
-      "description": "AI-based hospital app that connects doctors and patients with intelligent diagnosis and real-time clinical support.",
-      "year": 2024,
-      "icon": "🏆"
-    },
-    {
-      "id": "snstech24",
-      "title": "SNS Tech Hack 2024",
-      "result": "1st Prize",
-      "project": "EV Charging Booking App",
-      "description": "Developed a complete EV charging slot booking application within 24 hours during the hackathon.",
-      "year": 2024,
-      "icon": "⚡"
-    },
-    {
-      "id": "imparathon24",
-      "title": "IMPARATHON '24",
-      "result": "Showcase Winner",
-      "project": "SightCompanion",
-      "description": "Computer vision-based AI assistant that helps visually impaired users navigate surroundings through real-time voice guidance.",
-      "year": 2024,
-      "icon": "👁️"
+      "icon": "🥉"
     }
   ],
   "experience": [

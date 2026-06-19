@@ -41,12 +41,14 @@ gowtham-portfolio/
 
 ### Local Development
 
+With **python-uv**, setup and running is instant:
+
 ```bash
 git clone <your-repo>
 cd gowtham-portfolio
-pip install fastapi uvicorn httpx python-dotenv
-cp .env.example .env   # Add your keys
-python app.py
+uv sync                  # Installs all dependencies in a virtual environment
+cp .env.example .env     # Add your keys
+uv run python app.py     # Runs with hot-reloading active
 # Visit http://localhost:8000
 ```
 
@@ -55,10 +57,10 @@ python app.py
 1. Get a free **Groq API key** from [console.groq.com](https://console.groq.com)
 2. Get a **Pinecone API key** from [app.pinecone.io](https://app.pinecone.io)
 3. Add keys to `.env`
-4. Run the ingestion script:
+4. Add the ingestion libraries and run ingestion:
    ```bash
-   pip install pinecone-client sentence-transformers
-   python ingest_pinecone.py
+   uv add pinecone-client sentence-transformers
+   uv run python ingest_pinecone.py
    ```
 5. Start the server — chatbot now has full memory of your portfolio
 

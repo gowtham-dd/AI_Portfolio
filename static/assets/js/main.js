@@ -406,11 +406,22 @@ async function renderHackathons(containerId) {
   if (!data) return;
   container.innerHTML = data.map(h => `
     <div class="card hackathon-card animate-on-scroll">
-      <div class="icon">${h.icon}</div>
-      <div class="result">${h.result}</div>
-      <h3>${h.title}</h3>
-      <div class="project-name">${h.project}</div>
-      <p style="font-size:13px;color:var(--text-dim);line-height:1.7;">${h.description}</p>
+      <div class="hackathon-card-image-wrapper" ${h.image ? `onclick="window.portfolioUtils.openCertificateModal('${h.image}', '${h.title}')"` : ''}>
+        ${h.image ? `
+          <img src="${h.image}" alt="${h.title}" loading="lazy" />
+          <div class="proof-overlay">
+            <span>🔍 View Certificate</span>
+          </div>
+        ` : `
+          <div class="placeholder-icon">🏆</div>
+        `}
+      </div>
+      <div class="hackathon-card-content">
+        <div class="result">${h.result}</div>
+        <h3>${h.title}</h3>
+        <div class="project-name">${h.project}</div>
+        <p style="font-size:13px;color:var(--text-dim);line-height:1.7;">${h.description}</p>
+      </div>
     </div>
   `).join('');
   container.querySelectorAll('.animate-on-scroll').forEach(el => {
@@ -646,6 +657,47 @@ async function openProjectModal(projectId) {
 
   // Bind custom interactive triggers
   bindPlaygroundEvents(p.playground);
+  bindCursorHover();
+}
+
+function openCertificateModal(imageUrl, title) {
+  let backdrop = document.getElementById('cert-modal-backdrop');
+  if (!backdrop) {
+    backdrop = document.createElement('div');
+    backdrop.id = 'cert-modal-backdrop';
+    backdrop.className = 'project-modal-backdrop';
+    document.body.appendChild(backdrop);
+  }
+
+  backdrop.innerHTML = `
+    <div class="project-modal-container" tabindex="0" style="grid-template-columns: 1fr; max-width: 800px; max-height: 85vh; border-color: var(--border-glow); outline: none;">
+      <button class="project-modal-close-btn" aria-label="Close modal" style="position: absolute; top: 16px; right: 16px;">×</button>
+      
+      <div class="project-modal-main" style="padding: 24px 32px; display: flex; flex-direction: column; gap: 16px; align-items: center;">
+        <h2 style="font-family: var(--font-display); font-size: 22px; font-weight: 800; text-align: center; color: var(--text); margin-top: 8px;">${title}</h2>
+        <div style="width: 100%; max-height: 65vh; border-radius: var(--radius-sm); overflow-y: auto; overflow-x: hidden; border: 1px solid var(--border); background: #050810; display: flex; align-items: center; justify-content: center; padding: 8px;">
+          <img src="${imageUrl}" alt="${title} Proof" style="max-width: 100%; max-height: 60vh; object-fit: contain; border-radius: 4px;" />
+        </div>
+      </div>
+    </div>
+  `;
+
+  setTimeout(() => backdrop.classList.add('active'), 10);
+  backdrop.querySelector('.project-modal-container').focus();
+
+  const closeBtn = backdrop.querySelector('.project-modal-close-btn');
+  const closeModal = () => {
+    backdrop.classList.remove('active');
+    setTimeout(() => { backdrop.innerHTML = ''; }, 300);
+  };
+  closeBtn.addEventListener('click', closeModal);
+  backdrop.addEventListener('click', (e) => {
+    if (e.target === backdrop) closeModal();
+  });
+  backdrop.querySelector('.project-modal-container').addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeModal();
+  });
+
   bindCursorHover();
 }
 
@@ -1484,4 +1536,4 @@ function bindPlaygroundEvents(playgroundType) {
   }
 }
 
-window.portfolioUtils = { renderProjects, renderHackathons, renderSkills, loadGitHubRepos, loadData, renderProjectCard, openProjectModal };
+window.portfolioUtils = { renderProjects, renderHackathons, renderSkills, loadGitHubRepos, loadData, renderProjectCard, openProjectModal, openCertificateModal };
