@@ -512,6 +512,7 @@
       "org": "Noukha Technologies",
       "period": "Mar 2026 - Present",
       "type": "Internship",
+      "logo": "/static/assets/images/companies/noukha.png",
       "description": "Orchestrated generative AI systems and multi-agent workflows, driving operational speed and semantic recall optimizations.",
       "bullets": [
         "Designed LangGraph multi-agent systems, reducing average LLM system latency by 32% and compute cost by 20%.",
@@ -526,6 +527,7 @@
       "org": "Pixel Cognitix",
       "period": "Oct 2025 - Present",
       "type": "Internship",
+      "logo": "/static/assets/images/companies/pixelcognitix.png",
       "description": "Constructed high-speed web scraping, parsing, and classification agents to feed training pipelines for custom LLM models.",
       "bullets": [
         "Built automated ingest, parse, and classification scripts using n8n + Python, saving 15+ operational hours per week.",
@@ -540,6 +542,7 @@
       "org": "Alesa AI (UK)",
       "period": "Mar 2025 - Sep 2025",
       "type": "Internship",
+      "logo": "/static/assets/images/companies/alesa.png",
       "description": "Collaborated with an international engineering team to build, optimize, and scale production backend systems for AI-powered mobile apps.",
       "bullets": [
         "Developed and scaled backend APIs for 2 flagship applications (Noulez & SnagNinja) serving thousands of users.",
@@ -554,6 +557,7 @@
       "org": "Pyroguards (CBE)",
       "period": "Jan 2025 - Mar 2025",
       "type": "Internship",
+      "logo": "/static/assets/images/companies/pyroguards.png",
       "description": "Built a highly optimized machine learning classifier detecting malicious signatures and phishing nodes.",
       "bullets": [
         "Engineered an XGBoost/Scikit-learn URL classifier achieving 98.4% accuracy in detecting phishing vectors.",
@@ -568,6 +572,7 @@
       "org": "GDGoC SKASC",
       "period": "2024 - 2025",
       "type": "Leadership",
+      "logo": "/static/assets/images/companies/gdgoc.png",
       "description": "Directed tech curriculums, built student developer pathways, and mentored coding teams on deep learning systems.",
       "bullets": [
         "Led a technical community of 200+ members, conducting 15+ hands-on bootcamps on Deep Learning and MLOps.",
@@ -582,6 +587,7 @@
       "org": "GDGoC SKASC",
       "period": "2023 - 2024",
       "type": "Leadership",
+      "logo": "/static/assets/images/companies/gdgoc.png",
       "description": "Educated and trained student engineers in mobile framework architectures, modular coding, and open-source contributions.",
       "bullets": [
         "Conducted Flutter bootcamps for 150+ students, resulting in 25+ student-published cross-platform apps.",
