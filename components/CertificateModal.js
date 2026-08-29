@@ -59,3 +59,5 @@ export default function CertificateModal({ certificate, onClose }) {
     </div>
   );
 }
+
+

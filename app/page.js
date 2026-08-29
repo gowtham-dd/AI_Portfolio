@@ -91,7 +91,7 @@ export default function Home() {
               <span className="stat-label">AI Projects Shipped</span>
             </div>
             <div className="stat-item">
-              <span className="stat-number">5</span>
+              <span className="stat-number">6</span>
               <span className="stat-label">Hackathon Wins</span>
             </div>
             <div className="stat-item">
@@ -210,32 +210,36 @@ export default function Home() {
           Hackathons & Awards
         </h2>
         <div className="hackathon-grid">
-          {hackathons.map((h) => (
-            <div key={h.id} className="card hackathon-card">
-              <div
-                className="hackathon-card-image-wrapper"
-                onClick={() => h.image && setSelectedCert({ image: h.image, title: h.title })}
-                style={{ cursor: h.image ? 'pointer' : 'default' }}
-              >
-                {h.image ? (
-                  <>
-                    <img src={h.image} alt={h.title} loading="lazy" />
-                    <div className="proof-overlay">
-                      <span>🔍 View Certificate</span>
-                    </div>
-                  </>
-                ) : (
-                  <div className="placeholder-icon">🏆</div>
-                )}
+          {hackathons.map((h) => {
+            const cardCover = h.coverImage || h.image;
+            const certImage = h.certificateImage || h.image;
+            return (
+              <div key={h.id} className="card hackathon-card">
+                <div
+                  className="hackathon-card-image-wrapper"
+                  onClick={() => certImage && setSelectedCert({ image: certImage, title: h.title })}
+                  style={{ cursor: certImage ? 'pointer' : 'default' }}
+                >
+                  {cardCover ? (
+                    <>
+                      <img src={cardCover} alt={h.title} loading="lazy" />
+                      <div className="proof-overlay">
+                        <span>🔍 View Certificate</span>
+                      </div>
+                    </>
+                  ) : (
+                    <div className="placeholder-icon">{h.icon || '🏆'}</div>
+                  )}
+                </div>
+                <div className="hackathon-card-content">
+                  <div className="result">{h.result}</div>
+                  <h3>{h.title}</h3>
+                  <div className="project-name">{h.project}</div>
+                  <p style={{ fontSize: '13px', color: 'var(--text-dim)', lineHeight: 1.7 }}>{h.description}</p>
+                </div>
               </div>
-              <div className="hackathon-card-content">
-                <div className="result">{h.result}</div>
-                <h3>{h.title}</h3>
-                <div className="project-name">{h.project}</div>
-                <p style={{ fontSize: '13px', color: 'var(--text-dim)', lineHeight: 1.7 }}>{h.description}</p>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </section>
 

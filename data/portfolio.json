@@ -20,7 +20,7 @@
     "stats": {
       "students_mentored": 50,
       "projects_shipped": 12,
-      "hackathon_wins": 2,
+      "hackathon_wins": 3,
       "github_repos": 77
     }
   },
@@ -407,24 +407,16 @@
   ],
   "hackathons": [
     {
-      "id": "snstech24",
-      "title": "SNS Tech Hack 2024",
+      "id": "hacknext26",
+      "title": "HackNext'26 Series 1.0 @ SNS College of Technology",
       "result": "1st Prize",
-      "project": "EV Charging Booking App",
-      "description": "Developed a complete EV charging slot booking application within 24 hours during the hackathon.",
-      "year": 2024,
-      "icon": "⚡",
-      "image": "/static/assets/images/sns_tech_hack_proof.jpg"
-    },
-    {
-      "id": "techhack24",
-      "title": "Tech Hack '24",
-      "result": "1st Prize + Best Application Award",
-      "project": "SocioMedico App",
-      "description": "AI-based hospital app that connects doctors and patients with intelligent diagnosis and real-time clinical support.",
-      "year": 2024,
+      "project": "17-Agent Healthcare Claim Orchestration",
+      "description": "Built a 17-agent orchestration system for hospitals that reduces patient wait time and panic in medical claims while reducing hospital claim rejection rates by 35%.",
+      "year": 2026,
       "icon": "🏆",
-      "image": "/static/assets/images/techhack_proof.jpg"
+      "coverImage": "/static/assets/images/hacknext26_cover.jpg",
+      "certificateImage": "/static/assets/images/hacknext26_proof.jpg",
+      "image": "/static/assets/images/hacknext26_cover.jpg"
     },
     {
       "id": "icaitica26",
@@ -437,6 +429,16 @@
       "image": "/static/assets/images/best_paper_proof.jpg"
     },
     {
+      "id": "chessskasc26",
+      "title": "Chess Gold @ SKASC Sports Meet 2026",
+      "result": "Gold Medal",
+      "project": "Chess Championship",
+      "description": "Secured the first place and gold medal in the chess tournament representing Yaayu house at Sri Krishna Arts and Science College.",
+      "year": 2026,
+      "icon": "🥇",
+      "image": "/static/assets/images/chess_gold_proof.jpg"
+    },
+    {
       "id": "hackappsters26",
       "title": "HackAppsters L&T Edutech Hackathon",
       "result": "2nd Place",
@@ -445,6 +447,15 @@
       "year": 2026,
       "icon": "🥈",
       "image": "/static/assets/images/hackappsters_proof.jpg"
+    },
+    {
+      "id": "hackvision26",
+      "title": "HackVision 2026",
+      "result": "3rd Prize",
+      "project": "Event Management Agent",
+      "description": "Developed a single intelligent agent capable of managing end-to-end event workflows including scheduling, coordination, and automation.",
+      "year": 2026,
+      "icon": "🥉"
     },
     {
       "id": "neoverse26",
@@ -477,16 +488,6 @@
       "image": "/static/assets/images/kaggle_playground_proof.jpg"
     },
     {
-      "id": "chessskasc26",
-      "title": "Chess Gold @ SKASC Sports Meet 2026",
-      "result": "Gold Medal",
-      "project": "Chess Championship",
-      "description": "Secured the first place and gold medal in the chess tournament representing Yaayu house at Sri Krishna Arts and Science College.",
-      "year": 2026,
-      "icon": "🥇",
-      "image": "/static/assets/images/chess_gold_proof.jpg"
-    },
-    {
       "id": "techsprint26",
       "title": "Tech Sprint 2026 (GDG SKASC)",
       "result": "Top 10",
@@ -496,13 +497,24 @@
       "icon": "🚀"
     },
     {
-      "id": "hackvision26",
-      "title": "HackVision 2026",
-      "result": "3rd Prize",
-      "project": "Event Management Agent",
-      "description": "Developed a single intelligent agent capable of managing end-to-end event workflows including scheduling, coordination, and automation.",
-      "year": 2026,
-      "icon": "🥉"
+      "id": "snstech24",
+      "title": "SNS Tech Hack 2024",
+      "result": "1st Prize",
+      "project": "EV Charging Booking App",
+      "description": "Developed a complete EV charging slot booking application within 24 hours during the hackathon.",
+      "year": 2024,
+      "icon": "⚡",
+      "image": "/static/assets/images/sns_tech_hack_proof.jpg"
+    },
+    {
+      "id": "techhack24",
+      "title": "Tech Hack '24",
+      "result": "1st Prize + Best Application Award",
+      "project": "SocioMedico App",
+      "description": "AI-based hospital app that connects doctors and patients with intelligent diagnosis and real-time clinical support.",
+      "year": 2024,
+      "icon": "🏆",
+      "image": "/static/assets/images/techhack_proof.jpg"
     }
   ],
   "experience": [

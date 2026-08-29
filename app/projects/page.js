@@ -1,11 +1,10 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import portfolioData from '@/data/portfolio.json';
 import ProjectModal from '@/components/ProjectModal';
 
 export default function ProjectsPage() {
   const [filter, setFilter] = useState('all');
-  const [githubRepos, setGithubRepos] = useState([]);
   const [selectedProject, setSelectedProject] = useState(null);
 
   const categories = [
@@ -19,15 +18,6 @@ export default function ProjectsPage() {
   ];
 
   const filteredProjects = filter === 'all' ? portfolioData.projects : portfolioData.projects.filter((p) => p.category === filter);
-
-  useEffect(() => {
-    fetch('/api/github/repos')
-      .then((res) => res.json())
-      .then((data) => {
-        if (Array.isArray(data) && data.length > 0) setGithubRepos(data.slice(0, 6));
-      })
-      .catch(() => {});
-  }, []);
 
   return (
     <main>
@@ -79,7 +69,7 @@ export default function ProjectsPage() {
                     </span>
                   ))}
                 </div>
-                <div className="impact" style={{ padding: '10px 14px', background: 'rgba(0,212,255,0.04)', border: '1px solid rgba(0,212,255,0.1)', borderRadius: 'var(--radius-sm)', fontSize: '12.5px', color: 'var(--text-dim)', fontStyle: 'italic', marginBottom: '20px' }}>
+                <div className="impact" style={{ padding: '10px 14px', background: 'rgba(245,187,61,0.05)', border: '1px solid rgba(245,187,61,0.15)', borderRadius: 'var(--radius-sm)', fontSize: '12.5px', color: 'var(--text-dim)', fontStyle: 'italic', marginBottom: '20px' }}>
                   💡 {p.impact}
                 </div>
                 <div className="card-footer" style={{ marginTop: 'auto', paddingTop: '16px', borderTop: '1px solid var(--border)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
@@ -107,30 +97,6 @@ export default function ProjectsPage() {
                 </div>
               </div>
             </div>
-          ))}
-        </div>
-      </section>
-
-      {/* GitHub Section */}
-      <section className="section" style={{ paddingTop: 0 }}>
-        <div className="section-label">Open Source</div>
-        <h2 className="section-title" style={{ marginBottom: '32px' }}>
-          Live on GitHub
-        </h2>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(300px,1fr))', gap: '20px' }}>
-          {githubRepos.map((r, idx) => (
-            <a key={idx} href={r.url} target="_blank" rel="noopener noreferrer" className="card" style={{ padding: '20px', textDecoration: 'none', color: 'inherit', display: 'block' }}>
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '10px' }}>
-                <span style={{ fontFamily: 'var(--font-mono)', fontSize: '14px', color: 'var(--accent)' }}>{r.name}</span>
-                <span className="tag">{r.language || 'Code'}</span>
-              </div>
-              <p style={{ fontSize: '13px', color: 'var(--text-dim)', lineHeight: 1.6, marginBottom: '12px' }}>{r.description || 'No description'}</p>
-              <div style={{ display: 'flex', gap: '16px', fontFamily: 'var(--font-mono)', fontSize: '11px', color: 'var(--text-muted)' }}>
-                <span>⭐ {r.stars}</span>
-                <span>🍴 {r.forks}</span>
-                <span>{new Date(r.updated_at).toLocaleDateString()}</span>
-              </div>
-            </a>
           ))}
         </div>
       </section>
